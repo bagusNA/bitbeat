@@ -31,6 +31,16 @@
     <file>icons/home-fill.svg</file>
     <file>icons/home-bold.svg</file>
   </qresource>
+  <qresource prefix="fonts">
+    <file>fonts/Nunito-SemiBoldItalic.ttf</file>
+    <file>fonts/Nunito-SemiBold.ttf</file>
+    <file>fonts/Nunito-Regular.ttf</file>
+    <file>fonts/Nunito-LightItalic.ttf</file>
+    <file>fonts/Nunito-Light.ttf</file>
+    <file>fonts/Nunito-Italic.ttf</file>
+    <file>fonts/Nunito-BoldItalic.ttf</file>
+    <file>fonts/Nunito-Bold.ttf</file>
+  </qresource>
   <qresource prefix="images">
     <file>images/logo.svg</file>
     <file>images/logo-compact.svg</file>

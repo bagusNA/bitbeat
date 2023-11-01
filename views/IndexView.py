@@ -7,6 +7,7 @@ from ui.ui_mainwindow import Ui_MainWindow
 from models.Song import Song
 from utils.utils import seconds_to_minutes
 
+from widgets.QueueListWidget import QueueListWidget
 
 class IndexView(QMainWindow):
     def __init__(self):
@@ -83,7 +84,7 @@ class IndexView(QMainWindow):
         self.remove_all_widgets(container)
 
         for index, song in enumerate(queue):
-            btn = QPushButton(text=song.title)
+            btn = QueueListWidget(text=song.title)
             btn.clicked.connect(lambda *args, idx=index: self._controller.on_play_on_index(idx))
             container.addWidget(btn)
 

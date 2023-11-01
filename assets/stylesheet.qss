@@ -1,5 +1,9 @@
+* {
+    font-family: Nunito, 'Google Sans', sans-serif;
+}
+
 QMainWindow {
-    background-color: '#24273a'
+    background-color: '#24273a';
 }
 
 QPushButton {

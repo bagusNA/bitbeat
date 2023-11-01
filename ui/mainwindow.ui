@@ -112,7 +112,7 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="pushButton">
            <property name="minimumSize">
             <size>
              <width>64</width>
@@ -130,7 +130,7 @@
            </property>
            <property name="icon">
             <iconset resource="../assets/assets.qrc">
-             <normaloff>:/icons/icons/heart.svg</normaloff>:/icons/icons/heart.svg</iconset>
+             <normaloff>:/icons/icons/home.svg</normaloff>:/icons/icons/home.svg</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -170,7 +170,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="pushButton_3">
            <property name="minimumSize">
             <size>
              <width>64</width>
@@ -188,7 +188,7 @@
            </property>
            <property name="icon">
             <iconset resource="../assets/assets.qrc">
-             <normaloff>:/icons/icons/home.svg</normaloff>:/icons/icons/home.svg</iconset>
+             <normaloff>:/icons/icons/heart.svg</normaloff>:/icons/icons/heart.svg</iconset>
            </property>
            <property name="iconSize">
             <size>
@@ -291,15 +291,7 @@
         </widget>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="queue_list">
-         <item>
-          <widget class="QPushButton" name="song_queue_1">
-           <property name="text">
-            <string>ReI - The Oral Cigarettes</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        <layout class="QVBoxLayout" name="queue_list"/>
        </item>
        <item>
         <spacer name="verticalSpacer_4">
@@ -323,13 +315,6 @@
        <item row="0" column="0">
         <widget class="QWidget" name="widget_2" native="true">
          <layout class="QGridLayout" name="gridLayout">
-          <item row="0" column="0">
-           <widget class="QLineEdit" name="input_search">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-           </widget>
-          </item>
           <item row="1" column="0" colspan="2">
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
@@ -363,12 +348,37 @@
           </item>
           <item row="0" column="1">
            <widget class="QPushButton" name="btn_search">
+            <property name="minimumSize">
+             <size>
+              <width>128</width>
+              <height>36</height>
+             </size>
+            </property>
             <property name="text">
              <string>Search</string>
             </property>
             <property name="icon">
              <iconset resource="../assets/assets.qrc">
               <normaloff>:/icons/icons/search.svg</normaloff>:/icons/icons/search.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLineEdit" name="input_search">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>36</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
             </property>
            </widget>
           </item>
@@ -729,7 +739,7 @@
          <item row="2" column="0">
           <widget class="QLabel" name="current_duration_label">
            <property name="text">
-            <string>01:07</string>
+            <string>-:-</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -746,7 +756,7 @@
          <item row="2" column="4">
           <widget class="QLabel" name="total_duration_label">
            <property name="text">
-            <string>04:37</string>
+            <string>-:-</string>
            </property>
           </widget>
          </item>
@@ -760,7 +770,6 @@
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources>
-  <include location="../assets/assets.qrc"/>
   <include location="../assets/assets.qrc"/>
   <include location="../../../../../.designer/assets/assets.qrc"/>
  </resources>

@@ -21,7 +21,6 @@ from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
     QWidget)
 import assets_rc
 import assets_rc
-import assets_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -63,16 +62,16 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(-1, 24, -1, 0)
-        self.pushButton_3 = QPushButton(self.collapsed_sidebar_widget)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setMinimumSize(QSize(64, 64))
-        self.pushButton_3.setMaximumSize(QSize(64, 64))
+        self.pushButton = QPushButton(self.collapsed_sidebar_widget)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setMinimumSize(QSize(64, 64))
+        self.pushButton.setMaximumSize(QSize(64, 64))
         icon1 = QIcon()
-        icon1.addFile(u":/icons/icons/heart.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_3.setIcon(icon1)
-        self.pushButton_3.setIconSize(QSize(24, 24))
+        icon1.addFile(u":/icons/icons/home.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton.setIcon(icon1)
+        self.pushButton.setIconSize(QSize(24, 24))
 
-        self.verticalLayout_2.addWidget(self.pushButton_3)
+        self.verticalLayout_2.addWidget(self.pushButton)
 
         self.pushButton_2 = QPushButton(self.collapsed_sidebar_widget)
         self.pushButton_2.setObjectName(u"pushButton_2")
@@ -85,16 +84,16 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.pushButton_2)
 
-        self.pushButton = QPushButton(self.collapsed_sidebar_widget)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMinimumSize(QSize(64, 64))
-        self.pushButton.setMaximumSize(QSize(64, 64))
+        self.pushButton_3 = QPushButton(self.collapsed_sidebar_widget)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.pushButton_3.setMinimumSize(QSize(64, 64))
+        self.pushButton_3.setMaximumSize(QSize(64, 64))
         icon3 = QIcon()
-        icon3.addFile(u":/icons/icons/home.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton.setIcon(icon3)
-        self.pushButton.setIconSize(QSize(24, 24))
+        icon3.addFile(u":/icons/icons/heart.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_3.setIcon(icon3)
+        self.pushButton_3.setIconSize(QSize(24, 24))
 
-        self.verticalLayout_2.addWidget(self.pushButton)
+        self.verticalLayout_2.addWidget(self.pushButton_3)
 
         self.pushButton_13 = QPushButton(self.collapsed_sidebar_widget)
         self.pushButton_13.setObjectName(u"pushButton_13")
@@ -136,11 +135,6 @@ class Ui_MainWindow(object):
 
         self.queue_list = QVBoxLayout()
         self.queue_list.setObjectName(u"queue_list")
-        self.song_queue_1 = QPushButton(self.widget)
-        self.song_queue_1.setObjectName(u"song_queue_1")
-
-        self.queue_list.addWidget(self.song_queue_1)
-
 
         self.verticalLayout_3.addLayout(self.queue_list)
 
@@ -159,12 +153,6 @@ class Ui_MainWindow(object):
         self.widget_2.setObjectName(u"widget_2")
         self.gridLayout = QGridLayout(self.widget_2)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.input_search = QLineEdit(self.widget_2)
-        self.input_search.setObjectName(u"input_search")
-        self.input_search.setStyleSheet(u"")
-
-        self.gridLayout.addWidget(self.input_search, 0, 0, 1, 1)
-
         self.verticalLayout_6 = QVBoxLayout()
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.pushButton_16 = QPushButton(self.widget_2)
@@ -186,11 +174,24 @@ class Ui_MainWindow(object):
 
         self.btn_search = QPushButton(self.widget_2)
         self.btn_search.setObjectName(u"btn_search")
+        self.btn_search.setMinimumSize(QSize(128, 36))
         icon5 = QIcon()
         icon5.addFile(u":/icons/icons/search.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_search.setIcon(icon5)
 
         self.gridLayout.addWidget(self.btn_search, 0, 1, 1, 1)
+
+        self.input_search = QLineEdit(self.widget_2)
+        self.input_search.setObjectName(u"input_search")
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.input_search.sizePolicy().hasHeightForWidth())
+        self.input_search.setSizePolicy(sizePolicy)
+        self.input_search.setMinimumSize(QSize(0, 36))
+        self.input_search.setStyleSheet(u"")
+
+        self.gridLayout.addWidget(self.input_search, 0, 0, 1, 1)
 
 
         self.gridLayout_4.addWidget(self.widget_2, 0, 0, 1, 1)
@@ -210,11 +211,11 @@ class Ui_MainWindow(object):
         self.gridLayout_5.setHorizontalSpacing(12)
         self.album_cover = QLabel(self.widget_3)
         self.album_cover.setObjectName(u"album_cover")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.album_cover.sizePolicy().hasHeightForWidth())
-        self.album_cover.setSizePolicy(sizePolicy)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.album_cover.sizePolicy().hasHeightForWidth())
+        self.album_cover.setSizePolicy(sizePolicy1)
         self.album_cover.setMinimumSize(QSize(64, 64))
         self.album_cover.setMaximumSize(QSize(64, 64))
         self.album_cover.setScaledContents(False)
@@ -353,7 +354,7 @@ class Ui_MainWindow(object):
         self.btn_favorite.setObjectName(u"btn_favorite")
         self.btn_favorite.setMinimumSize(QSize(48, 32))
         self.btn_favorite.setMaximumSize(QSize(32, 32))
-        self.btn_favorite.setIcon(icon1)
+        self.btn_favorite.setIcon(icon3)
 
         self.horizontalLayout_2.addWidget(self.btn_favorite)
 
@@ -399,12 +400,11 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"BitBeat Music Player", None))
         self.label.setText("")
-        self.pushButton_3.setText("")
-        self.pushButton_2.setText("")
         self.pushButton.setText("")
+        self.pushButton_2.setText("")
+        self.pushButton_3.setText("")
         self.pushButton_13.setText("")
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Queue", None))
-        self.song_queue_1.setText(QCoreApplication.translate("MainWindow", u"ReI - The Oral Cigarettes", None))
         self.pushButton_16.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
         self.pushButton_17.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
         self.btn_search.setText(QCoreApplication.translate("MainWindow", u"Search", None))
@@ -419,7 +419,7 @@ class Ui_MainWindow(object):
         self.btn_pause.setText("")
         self.btn_next.setText("")
         self.btn_favorite.setText("")
-        self.current_duration_label.setText(QCoreApplication.translate("MainWindow", u"01:07", None))
-        self.total_duration_label.setText(QCoreApplication.translate("MainWindow", u"04:37", None))
+        self.current_duration_label.setText(QCoreApplication.translate("MainWindow", u"-:-", None))
+        self.total_duration_label.setText(QCoreApplication.translate("MainWindow", u"-:-", None))
     # retranslateUi
 
