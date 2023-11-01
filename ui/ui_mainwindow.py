@@ -366,11 +366,11 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6.addWidget(self.current_duration_label, 2, 0, 1, 1)
 
-        self.horizontalSlider_2 = QSlider(self.widget_3)
-        self.horizontalSlider_2.setObjectName(u"horizontalSlider_2")
-        self.horizontalSlider_2.setOrientation(Qt.Horizontal)
+        self.playback_slider = QSlider(self.widget_3)
+        self.playback_slider.setObjectName(u"playback_slider")
+        self.playback_slider.setOrientation(Qt.Horizontal)
 
-        self.gridLayout_6.addWidget(self.horizontalSlider_2, 2, 2, 1, 2)
+        self.gridLayout_6.addWidget(self.playback_slider, 2, 2, 1, 2)
 
         self.total_duration_label = QLabel(self.widget_3)
         self.total_duration_label.setObjectName(u"total_duration_label")

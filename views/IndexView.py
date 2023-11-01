@@ -5,6 +5,7 @@ from PySide6.QtGui import QPixmap
 
 from ui.ui_mainwindow import Ui_MainWindow
 from models.Song import Song
+from utils.utils import seconds_to_minutes
 
 
 class IndexView(QMainWindow):
@@ -22,6 +23,8 @@ class IndexView(QMainWindow):
 
         self._controller.player_service.current_song_changed.connect(self.on_song_change)
         self._controller.player_service.queue_changed.connect(self.on_queue_change)
+        self._controller.player_service.playback_position_changed.connect(self.on_playback_position_changed)
+        self._controller.player_service.playback_percent_changed.connect(self.on_playback_percent_changed)
 
         self.ui.input_search.textChanged.connect(self._controller.change_search_query)
         self.ui.btn_search.clicked.connect(self._controller.on_search)
@@ -45,6 +48,15 @@ class IndexView(QMainWindow):
     @Slot(list)
     def on_queue_change(self, songs: list[Song]) -> None:
         self.build_queue(songs)
+
+    @Slot(int)
+    def on_playback_position_changed(self, seconds: int) -> None:
+        time = seconds_to_minutes(seconds)
+        self.ui.current_duration_label.setText(time)
+
+    @Slot(int)
+    def on_playback_percent_changed(self, percent: int) -> None:
+        self.ui.playback_slider.setValue(percent)
 
     def toggle_play_button(self, is_playing: bool) -> None:
         if (is_playing):

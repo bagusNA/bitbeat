@@ -737,7 +737,7 @@
           </widget>
          </item>
          <item row="2" column="2" colspan="2">
-          <widget class="QSlider" name="horizontalSlider_2">
+          <widget class="QSlider" name="playback_slider">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>

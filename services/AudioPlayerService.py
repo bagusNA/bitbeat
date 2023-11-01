@@ -8,6 +8,8 @@ class AudioPlayerService(QObject):
     playback_status_changed = Signal(bool)
     current_song_changed = Signal(Song)
     queue_changed = Signal(list)
+    playback_position_changed = Signal(int)
+    playback_percent_changed = Signal(int)
 
     def __init__(self, service):
         super().__init__()
@@ -23,16 +25,52 @@ class AudioPlayerService(QObject):
         self.queue: list[Song] = []
         self.currently_playing_index: int | None = None
         self.is_currently_playing = False
+        self._playback_position = None
+        self._playback_percent = None
 
-        @self._player.property_observer('eof-reached')
-        def on_song_change(property_name, has_reached_eof):
-            print(has_reached_eof)
-            if (has_reached_eof is True):
-                self.next()
+        @self._player.property_observer('time-pos')
+        def on_playback_position_change(property_name, value: float):
+            if (value is None):
+                return
+
+            seconds = round(value)
+            if (seconds == self.playback_position):
+                return
+
+            self.playback_position = seconds
+
+        @self._player.property_observer('percent-pos')
+        def on_playback_position_change(property_name, value: float):
+            if (value is None):
+                return
+
+            percent = round(value)
+            if (percent == self.playback_percent):
+                return
+
+            self.playback_percent = percent
 
     @property
     def current_song(self):
         return self.queue[self.currently_playing_index]
+
+    @property
+    def playback_position(self):
+        return self._playback_position
+
+    @playback_position.setter
+    def playback_position(self, value):
+        self._playback_position = value
+        self.playback_position_changed.emit(value)
+
+    @property
+    def playback_percent(self):
+        return self._playback_percent
+
+    @playback_percent.setter
+    def playback_percent(self, value):
+        self._playback_percent = value
+        self.playback_percent_changed.emit(value)
 
     def on_song_change(self, callback):
         self._events.append(callback)
