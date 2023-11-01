@@ -1,0 +1,38 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons/music-album-bold.svg</file>
+    <file>icons/music-album.svg</file>
+    <file>icons/volume-up-fill.svg</file>
+    <file>icons/volume-up.svg</file>
+    <file>icons/playlist.svg</file>
+    <file>icons/volume-off-fill.svg</file>
+    <file>icons/volume-off.svg</file>
+    <file>icons/volume-down-fill.svg</file>
+    <file>icons/volume-down.svg</file>
+    <file>icons/playlist-shuffle-bold.svg</file>
+    <file>icons/playlist-shuffle.svg</file>
+    <file>icons/player-end-fill.svg</file>
+    <file>icons/player-end.svg</file>
+    <file>icons/player-start-fill.svg</file>
+    <file>icons/player-start.svg</file>
+    <file>icons/player-pause-fill.svg</file>
+    <file>icons/player-pause.svg</file>
+    <file>icons/player-play-fill.svg</file>
+    <file>icons/player-play.svg</file>
+    <file>icons/search-fill.svg</file>
+    <file>icons/search.svg</file>
+    <file>icons/settings-fill.svg</file>
+    <file>icons/settings.svg</file>
+    <file>icons/heart-fill.svg</file>
+    <file>icons/heart.svg</file>
+    <file>icons/home.svg</file>
+    <file>icons/disc-fill.svg</file>
+    <file>icons/disc.svg</file>
+    <file>icons/home-fill.svg</file>
+    <file>icons/home-bold.svg</file>
+  </qresource>
+  <qresource prefix="images">
+    <file>images/logo.svg</file>
+    <file>images/logo-compact.svg</file>
+  </qresource>
+</RCC>

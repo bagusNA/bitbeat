@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="albumCoverSample">
+    <file>album-cover-sample.jpg</file>
+  </qresource>
+</RCC>
