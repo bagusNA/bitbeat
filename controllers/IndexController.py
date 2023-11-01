@@ -22,7 +22,7 @@ class IndexController(QObject):
 
     @Slot(bool)
     def on_search(self):
-        self.player_service.add_song(self._view_model.search_query)
+        self.player_service.search_song(self._view_model.search_query)
         self._view.toggle_play_button(self.player_service.is_currently_playing)
 
     @Slot(bool)

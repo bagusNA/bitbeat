@@ -1,5 +1,5 @@
 # import mpv
-from PySide6.QtCore import QObject, Signal
+from PySide6.QtCore import QObject, QThread, Signal
 from models.Song import Song
 from utils.utils import coalesce
 
@@ -10,6 +10,7 @@ class AudioPlayerService(QObject):
     queue_changed = Signal(list)
     playback_position_changed = Signal(int)
     playback_percent_changed = Signal(int)
+    fetch_song_signal = Signal(str)
 
     def __init__(self, service):
         super().__init__()
@@ -19,8 +20,10 @@ class AudioPlayerService(QObject):
         self._player = mpv.MPV(video=False, script_opts='keep-open=yes')
 
         self._service = service
-        self._song_fetcher = self._service.song_fetcher
+        self._song_fetcher: QObject = self._service.song_fetcher
         self._events = []
+
+        self._bind_threads()
 
         self.queue: list[Song] = []
         self.currently_playing_index: int | None = None
@@ -49,6 +52,21 @@ class AudioPlayerService(QObject):
                 return
 
             self.playback_percent = percent
+
+    def __del__(self):
+        self.thread.quit()
+        self.thread.wait()
+
+    def _bind_threads(self):
+        self.thread = QThread()
+        self._song_fetcher.moveToThread(self.thread)
+
+        self.fetch_song_signal.connect(self._song_fetcher.fetch_song)
+        self._song_fetcher.song_fetched.connect(self.add_song)
+
+        self.thread.finished.connect(self.deleteLater)
+        self.thread.start()
+
 
     @property
     def current_song(self):
@@ -82,8 +100,10 @@ class AudioPlayerService(QObject):
     def on_song_ends(self, callback):
         pass
 
-    def add_song(self, url: str) -> None:
-        song = self._song_fetcher.fetch_song(url)
+    def search_song(self, url: str) -> None:
+        self.fetch_song_signal.emit(url)
+
+    def add_song(self, song: Song):
         self.queue.append(song)
 
         if self.currently_playing_index is None:

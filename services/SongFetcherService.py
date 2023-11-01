@@ -1,9 +1,14 @@
 import yt_dlp
+from PySide6.QtCore import QObject, Signal
 from models.Song import Song
 
 
-class SongFetcherService:
+class SongFetcherService(QObject):
+    song_fetched = Signal(object)
+
     def __init__(self, service, config=None):
+        super().__init__()
+
         if config is None:
             config = {'format': 'bestaudio'}
 
@@ -13,7 +18,7 @@ class SongFetcherService:
     def __del__(self):
         self._yt_dlp.close()
 
-    def fetch_song(self, url: str, audio_only=True) -> Song:
+    def fetch_song(self, url: str, audio_only=True) -> None:
         unsanitized_info = self._yt_dlp.extract_info(url, download=False)
         info = self._yt_dlp.sanitize_info(unsanitized_info)
 
@@ -22,7 +27,7 @@ class SongFetcherService:
             info['formats'] = self.sort_format_by_quality(audio_only_formats)
             info['audio_url'] = info['formats'][0]['url']
 
-        return Song(info)
+        self.song_fetched.emit(Song(info))
 
     # Utilities
     def is_format_audio_only(self, format: dict) -> bool:
