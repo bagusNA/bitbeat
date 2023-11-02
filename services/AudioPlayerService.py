@@ -118,6 +118,7 @@ class AudioPlayerService(QObject):
         self.is_currently_playing = True
         self.currently_playing_index = coalesce(index, self.currently_playing_index)
 
+        self._service.discord_presence.update_song(current_song)
         self.current_song_changed.emit(current_song)
         self.playback_status_changed.emit(self.is_currently_playing)
 
