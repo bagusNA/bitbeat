@@ -7,3 +7,10 @@ def seconds_to_minutes(seconds: int) -> str:
     left_seconds = seconds % (minutes * 60) if minutes != 0 else seconds
 
     return f"{str(minutes).rjust(2, '0')}:{str(left_seconds).rjust(2, '0')}"
+
+
+def remove_all_widgets(layout):
+    while layout.count():
+        child = layout.takeAt(0)
+        if child.widget():
+            child.widget().deleteLater()

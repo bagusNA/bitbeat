@@ -1,13 +1,14 @@
 from urllib.request import urlopen
 from PySide6.QtCore import Slot, Qt
-from PySide6.QtWidgets import QMainWindow, QPushButton
+from PySide6.QtWidgets import QMainWindow
 from PySide6.QtGui import QPixmap
 
 from ui.ui_mainwindow import Ui_MainWindow
 from models.Song import Song
-from utils.utils import seconds_to_minutes
+from utils.utils import seconds_to_minutes, remove_all_widgets
 
 from widgets.QueueListWidget import QueueListWidget
+
 
 class IndexView(QMainWindow):
     def __init__(self):
@@ -81,16 +82,9 @@ class IndexView(QMainWindow):
 
     def build_queue(self, queue: list[Song]):
         container = self.ui.queue_list
-        self.remove_all_widgets(container)
+        remove_all_widgets(container)
 
         for index, song in enumerate(queue):
             btn = QueueListWidget(text=song.title)
             btn.clicked.connect(lambda *args, idx=index: self._controller.on_play_on_index(idx))
             container.addWidget(btn)
-
-    # Utilities
-    def remove_all_widgets(self, layout):
-        while layout.count():
-            child = layout.takeAt(0)
-            if child.widget():
-                child.widget().deleteLater()
