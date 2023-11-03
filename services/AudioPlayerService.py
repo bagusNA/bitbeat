@@ -126,9 +126,6 @@ class AudioPlayerService(QObject):
         self._player.mute = value
         self.playback_muted_changed.emit(value)
 
-    def on_song_ends(self, callback):
-        pass
-
     def search_song(self, url: str) -> None:
         self.fetch_song_signal.emit(url)
 
