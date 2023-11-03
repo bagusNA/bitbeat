@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
-from pypresence import Presence
 from dotenv import dotenv_values
+from pypresence import Presence
 from models.Song import Song
 
 
@@ -34,11 +34,15 @@ class DiscordPresenceService:
         current_time = datetime.now()
         end_time = current_time + timedelta(seconds=song.duration)
 
-        buttons = self.buttons
-        buttons.insert(0, {
+        btn_data = {
             'label': 'Play',
             'url': song.url
-        })
+        }
+
+        if (len(self.buttons) == 2):
+            self.buttons[0] = btn_data
+        else:
+            self.buttons.insert(0, btn_data)
 
         self.RPC.update(
             details=song.title,
@@ -46,6 +50,6 @@ class DiscordPresenceService:
             large_image=song.thumbnail_url,
             large_text=f"{song.title} - {song.artist}",
             start=round(current_time.timestamp()),
-            # end=round(end_time.timestamp()),
-            buttons=buttons,
+            end=round(end_time.timestamp()),
+            buttons=self.buttons,
         )

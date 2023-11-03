@@ -53,6 +53,11 @@ class AudioPlayerService(QObject):
 
             self.playback_percent = percent
 
+        # This causes thread race condition, currently auto next is not supported
+        # @self._player.event_callback('end-file')
+        # def on_unload(_):
+        #     self.next()
+
     def __del__(self):
         self.thread.quit()
         self.thread.wait()
@@ -141,7 +146,7 @@ class AudioPlayerService(QObject):
         self.playback_status_changed.emit(self.is_currently_playing)
 
     def next(self) -> None:
-        next_index = self.currently_playing_index + 1 if len(self.queue) - 1 is not self.currently_playing_index else 0
+        next_index = self.currently_playing_index + 1 if len(self.queue) - 1 != self.currently_playing_index else 0
         self.play(next_index)
 
     def previous(self) -> None:
