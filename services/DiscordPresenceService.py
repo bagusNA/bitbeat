@@ -23,13 +23,16 @@ class DiscordPresenceService:
         self.RPC = Presence(self._CLIENT_ID)
         self.RPC.connect()
 
+        self.reset_status()
+
+    def __del__(self):
+        self.RPC.close()
+
+    def reset_status(self):
         self.RPC.update(
             details="Deciding what song to vibe to",
             buttons=self.buttons
         )
-
-    def __del__(self):
-        self.RPC.close()
 
     def set_song(self, song: Song):
         self.current_song = song
@@ -55,6 +58,7 @@ class DiscordPresenceService:
             large_image=self.current_song.thumbnail_url,
             large_text=f"{self.current_song.title} - {self.current_song.artist}",
             start=round(current_time.timestamp()),
+            # FIXME: Update end time on playback scrobble
             end=round(end_time.timestamp()),
             buttons=self.buttons,
         )
