@@ -149,7 +149,7 @@ class AudioPlayerService(QObject):
         self.is_currently_playing = True
         self.currently_playing_index = coalesce(index, self.currently_playing_index)
 
-        self._service.discord_presence.update_song(current_song)
+        self._service.discord_presence.set_song(current_song)
         self.current_song_changed.emit(current_song)
         self.playback_status_changed.emit(self.is_currently_playing)
 
@@ -178,3 +178,7 @@ class AudioPlayerService(QObject):
     def previous(self) -> None:
         previous_index = self.currently_playing_index - 1 if self.currently_playing_index != 0 else len(self.queue) - 1
         self.play(previous_index)
+
+    def move_playback_to(self, percent):
+        self._player.percent_pos = percent
+        self.playback_percent = percent
