@@ -20,7 +20,10 @@ class AudioPlayerService(QObject):
         # This in-function 'import mpv' avoids https://github.com/mpv-player/mpv/issues/7102
         # See also https://www.reddit.com/r/programminghorror/comments/dowp0x/comment/f5qyzxj
         import mpv
-        self._player = mpv.MPV(video=False, script_opts='keep-open=yes')
+        self._player = mpv.MPV(
+            video=False,
+            keep_open=True,
+        )
 
         self._service = service
         self._song_fetcher: QObject = self._service.song_fetcher
@@ -59,10 +62,12 @@ class AudioPlayerService(QObject):
 
             self.playback_percent = percent
 
-        # This causes thread race condition, currently auto next is not supported
-        # @self._player.event_callback('end-file')
-        # def on_unload(_):
-        #     self.next()
+        @self._player.property_observer('eof-reached')
+        def on_song_end(_, value):
+            if (value is not True):
+                return
+
+            self.next()
 
     def __del__(self):
         self.thread.quit()
@@ -120,13 +125,6 @@ class AudioPlayerService(QObject):
         self._playback_muted = value
         self._player.mute = value
         self.playback_muted_changed.emit(value)
-
-    def on_song_change(self, callback):
-        self._events.append(callback)
-
-    def call_song_change_events(self):
-        for callback in self._events:
-            callback()
 
     def on_song_ends(self, callback):
         pass
