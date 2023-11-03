@@ -144,6 +144,9 @@ class AudioPlayerService(QObject):
         self.queue_changed.emit(self.queue)
 
     def play(self, index: int | None = None) -> None:
+        if (len(self.queue) == 0):
+            return
+
         current_song = self.queue[coalesce(index, self.currently_playing_index)]
         self._player.play(current_song.audio_url)
         self.is_currently_playing = True
@@ -172,10 +175,16 @@ class AudioPlayerService(QObject):
         self.playback_status_changed.emit(self.is_currently_playing)
 
     def next(self) -> None:
+        if (len(self.queue) == 0):
+            return
+
         next_index = self.currently_playing_index + 1 if len(self.queue) - 1 != self.currently_playing_index else 0
         self.play(next_index)
 
     def previous(self) -> None:
+        if (len(self.queue) == 0):
+            return
+
         previous_index = self.currently_playing_index - 1 if self.currently_playing_index != 0 else len(self.queue) - 1
         self.play(previous_index)
 

@@ -25,6 +25,7 @@ class IndexView(QMainWindow):
 
         self._controller.player_service.current_song_changed.connect(self.on_song_change)
         self._controller.player_service.queue_changed.connect(self.on_queue_change)
+        self._controller.player_service.playback_status_changed.connect(self.on_playback_status_changed)
         self._controller.player_service.playback_position_changed.connect(self.on_playback_position_changed)
         self._controller.player_service.playback_percent_changed.connect(self.on_playback_percent_changed)
         self._controller.player_service.playback_volume_changed.connect(self.on_playback_volume_changed)
@@ -62,6 +63,11 @@ class IndexView(QMainWindow):
     def on_queue_change(self, songs: list[Song]) -> None:
         self.build_queue(songs)
 
+    @Slot(bool)
+    def on_playback_status_changed(self, is_playing: bool) -> None:
+        self.ui.btn_play.setVisible(not is_playing)
+        self.ui.btn_pause.setVisible(is_playing)
+
     @Slot(int)
     def on_playback_position_changed(self, seconds: int) -> None:
         time = seconds_to_minutes(seconds)
@@ -81,14 +87,6 @@ class IndexView(QMainWindow):
         self.ui.volume_slider.setEnabled(not is_muted)
         self.ui.btn_volume.setVisible(not is_muted)
         self.ui.btn_volume_muted.setVisible(is_muted)
-
-    def toggle_play_button(self, is_playing: bool) -> None:
-        if (is_playing):
-            self.ui.btn_play.setVisible(False)
-            self.ui.btn_pause.setVisible(True)
-        else:
-            self.ui.btn_play.setVisible(True)
-            self.ui.btn_pause.setVisible(False)
 
     def set_album_cover(self, url: str) -> None:
         img_data = urlopen(url).read()

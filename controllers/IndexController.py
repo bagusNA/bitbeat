@@ -22,7 +22,6 @@ class IndexController(QObject):
     @Slot(bool)
     def on_search(self):
         self.player_service.search_song(self._view_model.search_query)
-        self._view.toggle_play_button(self.player_service.is_currently_playing)
 
     @Slot(str)
     def change_search_query(self, value):
@@ -31,7 +30,6 @@ class IndexController(QObject):
     @Slot(bool)
     def on_play_toggle(self):
         self.player_service.toggle()
-        self._view.toggle_play_button(self.player_service.is_currently_playing)
 
     @Slot(bool)
     def on_play(self):
@@ -40,7 +38,6 @@ class IndexController(QObject):
     @Slot(int)
     def on_play_on_index(self, index):
         self.player_service.play(index)
-        print(index)
 
     @Slot(bool)
     def on_pause(self):
