@@ -27,6 +27,7 @@ class IndexView(QMainWindow):
         self._controller.player_service.queue_changed.connect(self.on_queue_change)
         self._controller.player_service.playback_position_changed.connect(self.on_playback_position_changed)
         self._controller.player_service.playback_percent_changed.connect(self.on_playback_percent_changed)
+        self._controller.player_service.playback_volume_changed.connect(self.on_playback_volume_changed)
 
         self.ui.input_search.textChanged.connect(self._controller.change_search_query)
         self.ui.btn_search.clicked.connect(self._controller.on_search)
@@ -34,6 +35,7 @@ class IndexView(QMainWindow):
         self.ui.btn_pause.clicked.connect(self._controller.on_play_toggle)
         self.ui.btn_previous.clicked.connect(self._controller.on_previous)
         self.ui.btn_next.clicked.connect(self._controller.on_next)
+        self.ui.volume_slider.valueChanged.connect(self._controller.on_volume_change)
 
     @Slot(str)
     def on_search_query_changed(self, value: str) -> None:
@@ -59,6 +61,10 @@ class IndexView(QMainWindow):
     @Slot(int)
     def on_playback_percent_changed(self, percent: int) -> None:
         self.ui.playback_slider.setValue(percent)
+
+    @Slot(int)
+    def on_playback_volume_changed(self, percent: int) -> None:
+        self.ui.volume_slider.setValue(percent)
 
     def toggle_play_button(self, is_playing: bool) -> None:
         if (is_playing):

@@ -54,3 +54,7 @@ class IndexController(QObject):
     @Slot(str)
     def change_search_query(self, value):
         self._view_model.search_query = value
+
+    @Slot(int)
+    def on_volume_change(self, value):
+        self.player_service.playback_volume = value

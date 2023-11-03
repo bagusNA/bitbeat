@@ -280,13 +280,13 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.btn_volume)
 
-        self.horizontalSlider = QSlider(self.widget_3)
-        self.horizontalSlider.setObjectName(u"horizontalSlider")
-        self.horizontalSlider.setMinimumSize(QSize(96, 24))
-        self.horizontalSlider.setMaximumSize(QSize(96, 24))
-        self.horizontalSlider.setOrientation(Qt.Horizontal)
+        self.volume_slider = QSlider(self.widget_3)
+        self.volume_slider.setObjectName(u"volume_slider")
+        self.volume_slider.setMinimumSize(QSize(96, 24))
+        self.volume_slider.setMaximumSize(QSize(96, 24))
+        self.volume_slider.setOrientation(Qt.Horizontal)
 
-        self.horizontalLayout.addWidget(self.horizontalSlider)
+        self.horizontalLayout.addWidget(self.volume_slider)
 
 
         self.gridLayout_3.addLayout(self.horizontalLayout, 0, 2, 1, 1)
