@@ -3,7 +3,6 @@ from ui.ui_mainwindow import Ui_MainWindow
 from view_models.main import ViewModel
 from views.main import View
 from services.main import Service
-from models.Song import Song
 
 
 class IndexController(QObject):
@@ -24,6 +23,10 @@ class IndexController(QObject):
     def on_search(self):
         self.player_service.search_song(self._view_model.search_query)
         self._view.toggle_play_button(self.player_service.is_currently_playing)
+
+    @Slot(str)
+    def change_search_query(self, value):
+        self._view_model.search_query = value
 
     @Slot(bool)
     def on_play_toggle(self):
@@ -51,9 +54,9 @@ class IndexController(QObject):
     def on_previous(self):
         self.player_service.previous()
 
-    @Slot(str)
-    def change_search_query(self, value):
-        self._view_model.search_query = value
+    @Slot(int)
+    def on_playback_scrobble(self, percent: int):
+        self.player_service.move_playback_to(percent)
 
     @Slot(int)
     def on_volume_change(self, value):

@@ -38,11 +38,13 @@ class IndexView(QMainWindow):
         self.ui.btn_next.clicked.connect(self._controller.on_next)
         self.ui.btn_volume.clicked.connect(self._controller.on_volume_toggle_mute)
         self.ui.btn_volume_muted.clicked.connect(self._controller.on_volume_toggle_mute)
+        self.ui.playback_slider.valueChanged.connect(self._controller.on_playback_scrobble)
         self.ui.volume_slider.valueChanged.connect(self._controller.on_volume_change)
 
     def prepare_ui(self):
         self.ui.btn_pause.setVisible(False)
         self.ui.btn_volume_muted.setVisible(False)
+        self.ui.playback_slider.setTracking(False)
 
     @Slot(str)
     def on_search_query_changed(self, value: str) -> None:
@@ -65,9 +67,10 @@ class IndexView(QMainWindow):
         time = seconds_to_minutes(seconds)
         self.ui.current_duration_label.setText(time)
 
+    # FIXME: Slider gets reverted back to position if user stays still for too long when dragging
     @Slot(int)
     def on_playback_percent_changed(self, percent: int) -> None:
-        self.ui.playback_slider.setValue(percent)
+        self.ui.playback_slider.setSliderPosition(percent)
 
     @Slot(int)
     def on_playback_volume_changed(self, percent: int) -> None:
