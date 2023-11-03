@@ -275,15 +275,28 @@ class Ui_MainWindow(object):
         self.btn_volume.setMinimumSize(QSize(48, 32))
         self.btn_volume.setMaximumSize(QSize(48, 32))
         icon7 = QIcon()
-        icon7.addFile(u":/icons/icons/volume-down-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon7.addFile(u":/icons/icons/volume-up-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.btn_volume.setIcon(icon7)
 
         self.horizontalLayout.addWidget(self.btn_volume)
 
+        self.btn_volume_muted = QPushButton(self.widget_3)
+        self.btn_volume_muted.setObjectName(u"btn_volume_muted")
+        self.btn_volume_muted.setMinimumSize(QSize(48, 32))
+        self.btn_volume_muted.setMaximumSize(QSize(48, 32))
+        icon8 = QIcon()
+        icon8.addFile(u":/icons/icons/volume-off-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_volume_muted.setIcon(icon8)
+
+        self.horizontalLayout.addWidget(self.btn_volume_muted)
+
         self.volume_slider = QSlider(self.widget_3)
         self.volume_slider.setObjectName(u"volume_slider")
+        self.volume_slider.setEnabled(True)
         self.volume_slider.setMinimumSize(QSize(96, 24))
         self.volume_slider.setMaximumSize(QSize(96, 24))
+        self.volume_slider.setMaximum(100)
+        self.volume_slider.setValue(100)
         self.volume_slider.setOrientation(Qt.Horizontal)
 
         self.horizontalLayout.addWidget(self.volume_slider)
@@ -303,9 +316,9 @@ class Ui_MainWindow(object):
         self.btn_shuffle.setMinimumSize(QSize(48, 32))
         self.btn_shuffle.setMaximumSize(QSize(32, 32))
         self.btn_shuffle.setStyleSheet(u"")
-        icon8 = QIcon()
-        icon8.addFile(u":/icons/icons/playlist-shuffle.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_shuffle.setIcon(icon8)
+        icon9 = QIcon()
+        icon9.addFile(u":/icons/icons/playlist-shuffle.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_shuffle.setIcon(icon9)
 
         self.horizontalLayout_2.addWidget(self.btn_shuffle)
 
@@ -313,9 +326,9 @@ class Ui_MainWindow(object):
         self.btn_previous.setObjectName(u"btn_previous")
         self.btn_previous.setMinimumSize(QSize(48, 32))
         self.btn_previous.setMaximumSize(QSize(32, 32))
-        icon9 = QIcon()
-        icon9.addFile(u":/icons/icons/player-start-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_previous.setIcon(icon9)
+        icon10 = QIcon()
+        icon10.addFile(u":/icons/icons/player-start-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_previous.setIcon(icon10)
 
         self.horizontalLayout_2.addWidget(self.btn_previous)
 
@@ -323,9 +336,9 @@ class Ui_MainWindow(object):
         self.btn_play.setObjectName(u"btn_play")
         self.btn_play.setMinimumSize(QSize(48, 32))
         self.btn_play.setMaximumSize(QSize(32, 32))
-        icon10 = QIcon()
-        icon10.addFile(u":/icons/icons/player-play-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_play.setIcon(icon10)
+        icon11 = QIcon()
+        icon11.addFile(u":/icons/icons/player-play-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_play.setIcon(icon11)
 
         self.horizontalLayout_2.addWidget(self.btn_play)
 
@@ -334,9 +347,9 @@ class Ui_MainWindow(object):
         self.btn_pause.setEnabled(True)
         self.btn_pause.setMinimumSize(QSize(48, 32))
         self.btn_pause.setMaximumSize(QSize(32, 32))
-        icon11 = QIcon()
-        icon11.addFile(u":/icons/icons/player-pause-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_pause.setIcon(icon11)
+        icon12 = QIcon()
+        icon12.addFile(u":/icons/icons/player-pause-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_pause.setIcon(icon12)
 
         self.horizontalLayout_2.addWidget(self.btn_pause)
 
@@ -344,9 +357,9 @@ class Ui_MainWindow(object):
         self.btn_next.setObjectName(u"btn_next")
         self.btn_next.setMinimumSize(QSize(48, 32))
         self.btn_next.setMaximumSize(QSize(32, 32))
-        icon12 = QIcon()
-        icon12.addFile(u":/icons/icons/player-end-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_next.setIcon(icon12)
+        icon13 = QIcon()
+        icon13.addFile(u":/icons/icons/player-end-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_next.setIcon(icon13)
 
         self.horizontalLayout_2.addWidget(self.btn_next)
 
@@ -369,6 +382,7 @@ class Ui_MainWindow(object):
 
         self.playback_slider = QSlider(self.widget_3)
         self.playback_slider.setObjectName(u"playback_slider")
+        self.playback_slider.setMaximum(100)
         self.playback_slider.setOrientation(Qt.Horizontal)
 
         self.gridLayout_6.addWidget(self.playback_slider, 2, 2, 1, 2)
@@ -413,6 +427,7 @@ class Ui_MainWindow(object):
         self.song_artist_label.setText(QCoreApplication.translate("MainWindow", u"The Oral Cigarettes", None))
         self.btn_lyrics.setText("")
         self.btn_volume.setText("")
+        self.btn_volume_muted.setText("")
         self.btn_shuffle.setText("")
         self.btn_previous.setText("")
         self.btn_play.setText("")

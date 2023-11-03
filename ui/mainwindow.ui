@@ -552,12 +552,38 @@
            </property>
            <property name="icon">
             <iconset resource="../assets/assets.qrc">
-             <normaloff>:/icons/icons/volume-down-fill.svg</normaloff>:/icons/icons/volume-down-fill.svg</iconset>
+             <normaloff>:/icons/icons/volume-up-fill.svg</normaloff>:/icons/icons/volume-up-fill.svg</iconset>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btn_volume_muted">
+           <property name="minimumSize">
+            <size>
+             <width>48</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>48</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../assets/assets.qrc">
+             <normaloff>:/icons/icons/volume-off-fill.svg</normaloff>:/icons/icons/volume-off-fill.svg</iconset>
            </property>
           </widget>
          </item>
          <item>
           <widget class="QSlider" name="volume_slider">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="minimumSize">
             <size>
              <width>96</width>

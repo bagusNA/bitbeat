@@ -13,7 +13,7 @@ class AudioPlayerService(QObject):
     playback_position_changed = Signal(int)
     playback_percent_changed = Signal(int)
     playback_volume_changed = Signal(int)
-    playback_volume_muted_changed = Signal(bool)
+    playback_muted_changed = Signal(bool)
 
     def __init__(self, service):
         super().__init__()
@@ -35,6 +35,7 @@ class AudioPlayerService(QObject):
         self._playback_position = None
         self._playback_percent = None
         self._playback_volume = None
+        self._playback_muted = None
 
         @self._player.property_observer('time-pos')
         def on_playback_position_change(_, value: float):
@@ -107,8 +108,18 @@ class AudioPlayerService(QObject):
     @playback_volume.setter
     def playback_volume(self, value):
         self._playback_volume = value
-        self._player.volume = self._playback_volume
+        self._player.volume = value
         self.playback_volume_changed.emit(value)
+
+    @property
+    def playback_muted(self):
+        return self._playback_muted
+
+    @playback_muted.setter
+    def playback_muted(self, value: bool) -> None:
+        self._playback_muted = value
+        self._player.mute = value
+        self.playback_muted_changed.emit(value)
 
     def on_song_change(self, callback):
         self._events.append(callback)

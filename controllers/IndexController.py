@@ -58,3 +58,7 @@ class IndexController(QObject):
     @Slot(int)
     def on_volume_change(self, value):
         self.player_service.playback_volume = value
+
+    @Slot(bool)
+    def on_volume_toggle_mute(self, _) -> None:
+        self.player_service.playback_muted = not self.player_service.playback_muted

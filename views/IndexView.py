@@ -18,7 +18,7 @@ class IndexView(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.ui.btn_pause.setVisible(False)
+        self.prepare_ui()
 
     def bind(self, controller):
         self._controller = controller.index
@@ -28,6 +28,7 @@ class IndexView(QMainWindow):
         self._controller.player_service.playback_position_changed.connect(self.on_playback_position_changed)
         self._controller.player_service.playback_percent_changed.connect(self.on_playback_percent_changed)
         self._controller.player_service.playback_volume_changed.connect(self.on_playback_volume_changed)
+        self._controller.player_service.playback_muted_changed.connect(self.on_playback_muted_changed)
 
         self.ui.input_search.textChanged.connect(self._controller.change_search_query)
         self.ui.btn_search.clicked.connect(self._controller.on_search)
@@ -35,7 +36,13 @@ class IndexView(QMainWindow):
         self.ui.btn_pause.clicked.connect(self._controller.on_play_toggle)
         self.ui.btn_previous.clicked.connect(self._controller.on_previous)
         self.ui.btn_next.clicked.connect(self._controller.on_next)
+        self.ui.btn_volume.clicked.connect(self._controller.on_volume_toggle_mute)
+        self.ui.btn_volume_muted.clicked.connect(self._controller.on_volume_toggle_mute)
         self.ui.volume_slider.valueChanged.connect(self._controller.on_volume_change)
+
+    def prepare_ui(self):
+        self.ui.btn_pause.setVisible(False)
+        self.ui.btn_volume_muted.setVisible(False)
 
     @Slot(str)
     def on_search_query_changed(self, value: str) -> None:
@@ -65,6 +72,12 @@ class IndexView(QMainWindow):
     @Slot(int)
     def on_playback_volume_changed(self, percent: int) -> None:
         self.ui.volume_slider.setValue(percent)
+
+    @Slot(bool)
+    def on_playback_muted_changed(self, is_muted: bool) -> None:
+        self.ui.volume_slider.setEnabled(not is_muted)
+        self.ui.btn_volume.setVisible(not is_muted)
+        self.ui.btn_volume_muted.setVisible(is_muted)
 
     def toggle_play_button(self, is_playing: bool) -> None:
         if (is_playing):
