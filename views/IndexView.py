@@ -30,6 +30,7 @@ class IndexView(QMainWindow):
         self._controller.player_service.playback_percent_changed.connect(self.on_playback_percent_changed)
         self._controller.player_service.playback_volume_changed.connect(self.on_playback_volume_changed)
         self._controller.player_service.playback_muted_changed.connect(self.on_playback_muted_changed)
+        self._controller.view_model.song_favourite_changed.connect(self.on_song_favourite_changed)
 
         self.ui.input_search.textChanged.connect(self._controller.change_search_query)
         self.ui.btn_search.clicked.connect(self._controller.on_search)
@@ -37,6 +38,8 @@ class IndexView(QMainWindow):
         self.ui.btn_pause.clicked.connect(self._controller.on_play_toggle)
         self.ui.btn_previous.clicked.connect(self._controller.on_previous)
         self.ui.btn_next.clicked.connect(self._controller.on_next)
+        self.ui.btn_favourited.clicked.connect(self._controller.on_song_favourite_toggled)
+        self.ui.btn_not_favourited.clicked.connect(self._controller.on_song_favourite_toggled)
         self.ui.btn_volume.clicked.connect(self._controller.on_volume_toggle_mute)
         self.ui.btn_volume_muted.clicked.connect(self._controller.on_volume_toggle_mute)
         self.ui.playback_slider.valueChanged.connect(self._controller.on_playback_scrobble)
@@ -45,6 +48,7 @@ class IndexView(QMainWindow):
     def prepare_ui(self):
         self.ui.btn_pause.setVisible(False)
         self.ui.btn_volume_muted.setVisible(False)
+        self.ui.btn_favourited.setVisible(False)
         self.ui.playback_slider.setTracking(False)
 
     @Slot(str)
@@ -56,6 +60,9 @@ class IndexView(QMainWindow):
         self.ui.song_title_label.setText(song.title)
         self.ui.song_artist_label.setText(song.artist)
         self.ui.total_duration_label.setText(song.duration_formatted)
+
+        self.ui.btn_favourited.setVisible(song.is_favourite)
+        self.ui.btn_not_favourited.setVisible(not song.is_favourite)
 
         self.set_album_cover(song.thumbnail_url)
 
@@ -87,6 +94,11 @@ class IndexView(QMainWindow):
         self.ui.volume_slider.setEnabled(not is_muted)
         self.ui.btn_volume.setVisible(not is_muted)
         self.ui.btn_volume_muted.setVisible(is_muted)
+
+    @Slot(bool)
+    def on_song_favourite_changed(self, is_favourited: bool) -> None:
+        self.ui.btn_favourited.setVisible(is_favourited)
+        self.ui.btn_not_favourited.setVisible(not is_favourited)
 
     def set_album_cover(self, url: str) -> None:
         img_data = urlopen(url).read()

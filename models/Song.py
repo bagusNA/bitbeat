@@ -1,18 +1,22 @@
-from enum import Enum
+from datetime import datetime
+from peewee import *
+
 from utils.utils import coalesce, seconds_to_minutes
+from .main import Model
 
 
-class Status(Enum):
-    NOT_PLAYED = 0
-    CURRENTLY_PLAYED = 1
-    HAS_PLAYED = 2
+class Song(Model):
+    id = TextField(primary_key=True)
+    title = TextField()
+    artist = TextField()
+    duration = IntegerField()
+    url = TextField()
+    channel_url = TextField()
+    upload_date = TextField()
+    is_favourite = BooleanField(default=False)
+    last_played_at = TimestampField()
 
-
-class Song(object):
-    def __init__(self,
-                 song_info: dict,
-                 status: Status = Status.NOT_PLAYED
-                 ) -> None:
+    def load(self, song_info: dict) -> None:
         self.id = song_info.get('id')
         self.title = song_info.get('title')
         self.artist = coalesce(song_info.get('artist', None), song_info.get('channel', None), song_info['uploader'])
@@ -25,4 +29,14 @@ class Song(object):
         self.view_count = song_info.get('view_count')
         self.upload_date = song_info.get('upload_date')
         self.channel_url = song_info.get('channel_url')
-        self.status = status
+
+    def set_favourite(self, value: bool):
+        self.is_favourite = value
+        self.save()
+
+    def toggle_favourite(self):
+        return self.set_favourite(not self.is_favourite)
+
+    def update_last_played(self):
+        self.last_played_at = datetime.now().timestamp()
+        self.save()

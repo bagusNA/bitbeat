@@ -12,7 +12,7 @@ class IndexController(QObject):
                  service: Service):
         super().__init__()
 
-        self._view_model = view_model.index
+        self.view_model = view_model.index
         self._view = view.views['index']
         self._ui: Ui_MainWindow = view.ui('index')
 
@@ -21,11 +21,11 @@ class IndexController(QObject):
 
     @Slot(bool)
     def on_search(self):
-        self.player_service.search_song(self._view_model.search_query)
+        self.player_service.search_song(self.view_model.search_query)
 
     @Slot(str)
     def change_search_query(self, value):
-        self._view_model.search_query = value
+        self.view_model.search_query = value
 
     @Slot(bool)
     def on_play_toggle(self):
@@ -62,3 +62,12 @@ class IndexController(QObject):
     @Slot(bool)
     def on_volume_toggle_mute(self, _) -> None:
         self.player_service.playback_muted = not self.player_service.playback_muted
+
+    @Slot(bool)
+    def on_song_favourite_toggled(self, _) -> None:
+        current_song = self.player_service.current_song
+        if not current_song:
+            return
+
+        current_song.toggle_favourite()
+        self.view_model.song_favourite_changed.emit(current_song.is_favourite)

@@ -4,6 +4,7 @@ from services.main import Service
 
 class IndexViewModel(QObject):
     search_query_changed = Signal(str)
+    song_favourite_changed = Signal(bool)
 
     def __init__(self, service: Service):
         super().__init__()

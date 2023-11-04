@@ -280,13 +280,23 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.btn_next)
 
-        self.btn_favorite = QPushButton(self.widget_3)
-        self.btn_favorite.setObjectName(u"btn_favorite")
-        self.btn_favorite.setMinimumSize(QSize(48, 32))
-        self.btn_favorite.setMaximumSize(QSize(32, 32))
-        self.btn_favorite.setIcon(icon3)
+        self.btn_favourited = QPushButton(self.widget_3)
+        self.btn_favourited.setObjectName(u"btn_favourited")
+        self.btn_favourited.setMinimumSize(QSize(48, 32))
+        self.btn_favourited.setMaximumSize(QSize(48, 32))
+        icon13 = QIcon()
+        icon13.addFile(u":/icons/icons/heart-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_favourited.setIcon(icon13)
 
-        self.horizontalLayout_2.addWidget(self.btn_favorite)
+        self.horizontalLayout_2.addWidget(self.btn_favourited)
+
+        self.btn_not_favourited = QPushButton(self.widget_3)
+        self.btn_not_favourited.setObjectName(u"btn_not_favourited")
+        self.btn_not_favourited.setMinimumSize(QSize(48, 32))
+        self.btn_not_favourited.setMaximumSize(QSize(32, 32))
+        self.btn_not_favourited.setIcon(icon3)
+
+        self.horizontalLayout_2.addWidget(self.btn_not_favourited)
 
 
         self.gridLayout_6.addLayout(self.horizontalLayout_2, 1, 2, 1, 2)
@@ -385,9 +395,9 @@ class Ui_MainWindow(object):
         self.btn_search = QPushButton(self.page)
         self.btn_search.setObjectName(u"btn_search")
         self.btn_search.setMinimumSize(QSize(0, 36))
-        icon13 = QIcon()
-        icon13.addFile(u":/icons/icons/search.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_search.setIcon(icon13)
+        icon14 = QIcon()
+        icon14.addFile(u":/icons/icons/search.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_search.setIcon(icon14)
 
         self.horizontalLayout_4.addWidget(self.btn_search)
 
@@ -523,7 +533,8 @@ class Ui_MainWindow(object):
         self.btn_play.setText("")
         self.btn_pause.setText("")
         self.btn_next.setText("")
-        self.btn_favorite.setText("")
+        self.btn_favourited.setText("")
+        self.btn_not_favourited.setText("")
         self.current_duration_label.setText(QCoreApplication.translate("MainWindow", u"-:-", None))
         self.total_duration_label.setText(QCoreApplication.translate("MainWindow", u"-:-", None))
         self.pushButton_16.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))

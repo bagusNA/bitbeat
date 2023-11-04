@@ -1,15 +1,21 @@
 import sys
+
 from PySide6.QtWidgets import QApplication
 from PySide6.QtGui import QFontDatabase
+
 from controllers.main import Controller
 from view_models.main import ViewModel
 from views.main import View
 from services.main import Service
+from models.Migration import Migration
+from models.Song import Song
 
 
 class BitBeatMusicPlayer(QApplication):
     def __init__(self, sys_argv):
         super(BitBeatMusicPlayer, self).__init__(sys_argv)
+
+        Migration.start_or_skip()
 
         self.service = Service()
         self.view_model = ViewModel(self.service)

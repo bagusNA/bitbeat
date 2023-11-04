@@ -5,3 +5,4 @@ mpv==1.0.4
 yt-dlp==2023.10.13
 pypresence==4.3.0
 python-dotenv=1.0.0
+peewee==3.17.0

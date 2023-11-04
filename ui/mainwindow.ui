@@ -601,7 +601,30 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="btn_favorite">
+            <widget class="QPushButton" name="btn_favourited">
+             <property name="minimumSize">
+              <size>
+               <width>48</width>
+               <height>32</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>48</width>
+               <height>32</height>
+              </size>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../assets/assets.qrc">
+               <normaloff>:/icons/icons/heart-fill.svg</normaloff>:/icons/icons/heart-fill.svg</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btn_not_favourited">
              <property name="minimumSize">
               <size>
                <width>48</width>

@@ -1,4 +1,5 @@
 import yt_dlp
+from peewee import DoesNotExist
 from PySide6.QtCore import QObject, Signal
 from models.Song import Song
 
@@ -28,13 +29,25 @@ class SongFetcherService(QObject):
         songs: list[Song] = []
         unformatted_songs = info['entries'] if (info['_type'] == 'playlist') else [info]
 
-        for song in unformatted_songs:
+        for song_info in unformatted_songs:
             if (audio_only):
-                audio_only_formats = list(filter(self.is_format_audio_only, song['formats']))
-                song['formats'] = self.sort_format_by_quality(audio_only_formats)
-                song['audio_url'] = song['formats'][0]['url']
+                audio_only_formats = list(filter(self.is_format_audio_only, song_info['formats']))
+                song_info['formats'] = self.sort_format_by_quality(audio_only_formats)
+                song_info['audio_url'] = song_info['formats'][0]['url']
 
-            songs.append(Song(song))
+            is_new_song = False
+            try:
+                song = Song.get_by_id(song_info['id'])
+            except DoesNotExist:
+                song = Song()
+                is_new_song = True
+
+            song.load(song_info)
+
+            if is_new_song:
+                song.save_force()
+
+            songs.append(song)
 
         self.song_fetched.emit(songs)
 

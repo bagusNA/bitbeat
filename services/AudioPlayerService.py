@@ -85,6 +85,9 @@ class AudioPlayerService(QObject):
 
     @property
     def current_song(self):
+        if self.currently_playing_index is None:
+            return None
+
         return self.queue[self.currently_playing_index]
 
     @property
@@ -146,6 +149,7 @@ class AudioPlayerService(QObject):
         self.is_currently_playing = True
         self.currently_playing_index = coalesce(index, self.currently_playing_index)
 
+        current_song.update_last_played()
         self._service.discord_presence.set_song(current_song)
         self.current_song_changed.emit(current_song)
         self.playback_status_changed.emit(self.is_currently_playing)
