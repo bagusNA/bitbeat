@@ -10,7 +10,10 @@ class SongFetcherService(QObject):
         super().__init__()
 
         if config is None:
-            config = {'format': 'bestaudio'}
+            config = {
+                'format': 'bestaudio',
+                'noplaylist': True,
+            }
 
         self._service = service
         self._yt_dlp = yt_dlp.YoutubeDL(config)
