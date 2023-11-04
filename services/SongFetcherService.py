@@ -22,12 +22,18 @@ class SongFetcherService(QObject):
         unsanitized_info = self._yt_dlp.extract_info(url, download=False)
         info = self._yt_dlp.sanitize_info(unsanitized_info)
 
-        if (audio_only):
-            audio_only_formats = list(filter(self.is_format_audio_only, info['formats']))
-            info['formats'] = self.sort_format_by_quality(audio_only_formats)
-            info['audio_url'] = info['formats'][0]['url']
+        songs: list[Song] = []
+        unformatted_songs = info['entries'] if (info['_type'] == 'playlist') else [info]
 
-        self.song_fetched.emit(Song(info))
+        for song in unformatted_songs:
+            if (audio_only):
+                audio_only_formats = list(filter(self.is_format_audio_only, song['formats']))
+                song['formats'] = self.sort_format_by_quality(audio_only_formats)
+                song['audio_url'] = song['formats'][0]['url']
+
+            songs.append(Song(song))
+
+        self.song_fetched.emit(songs)
 
     # Utilities
     def is_format_audio_only(self, format: dict) -> bool:

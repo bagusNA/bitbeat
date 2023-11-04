@@ -83,7 +83,6 @@ class AudioPlayerService(QObject):
         self.thread.finished.connect(self.deleteLater)
         self.thread.start()
 
-
     @property
     def current_song(self):
         return self.queue[self.currently_playing_index]
@@ -129,12 +128,12 @@ class AudioPlayerService(QObject):
     def search_song(self, url: str) -> None:
         self.fetch_song_signal.emit(url)
 
-    def add_song(self, song: Song):
-        self.queue.append(song)
+    def add_song(self, songs: list[Song]):
+        self.queue += songs
 
         if self.currently_playing_index is None:
             self.currently_playing_index = 0
-            self.current_song_changed.emit(song)
+            self.current_song_changed.emit(self.queue[0])
 
         self.queue_changed.emit(self.queue)
 
