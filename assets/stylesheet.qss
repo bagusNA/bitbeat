@@ -18,3 +18,12 @@ QPushButton:hover {
 QPushButton:pressed {
     background-color: '#494d64';
 }
+
+QScrollArea,
+QScrollArea > QWidget > QWidget {
+    background: transparent;
+}
+
+QScrollArea > QWidget > QScrollBar {
+    background: palette(base);
+}

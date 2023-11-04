@@ -6,3 +6,4 @@ class QueueListWidget(QPushButton):
         super(QueueListWidget, self).__init__(*args, **kwargs)
 
         self.setFixedHeight(48)
+        self.setStyleSheet("text-align: left;")

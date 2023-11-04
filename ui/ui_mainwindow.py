@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
-    QLineEdit, QMainWindow, QPushButton, QSizePolicy,
-    QSlider, QSpacerItem, QStackedWidget, QStatusBar,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
+    QLabel, QLineEdit, QMainWindow, QPushButton,
+    QScrollArea, QSizePolicy, QSlider, QSpacerItem,
+    QStackedWidget, QStatusBar, QVBoxLayout, QWidget)
 import assets_rc
 import assets_rc
 
@@ -332,13 +332,6 @@ class Ui_MainWindow(object):
         self.topbar_widget.setObjectName(u"topbar_widget")
         self.gridLayout_4 = QGridLayout(self.topbar_widget)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
-        self.widget_2 = QWidget(self.topbar_widget)
-        self.widget_2.setObjectName(u"widget_2")
-        self.gridLayout = QGridLayout(self.widget_2)
-        self.gridLayout.setObjectName(u"gridLayout")
-
-        self.gridLayout_4.addWidget(self.widget_2, 1, 1, 1, 1)
-
         self.stackedWidget = QStackedWidget(self.topbar_widget)
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.page = QWidget()
@@ -471,15 +464,13 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.stackedWidget, 1, 0, 1, 1)
 
-
-        self.gridLayout_2.addWidget(self.topbar_widget, 0, 1, 1, 1)
-
-        self.widget = QWidget(self.container)
+        self.widget = QWidget(self.topbar_widget)
         self.widget.setObjectName(u"widget")
         self.widget.setMinimumSize(QSize(250, 0))
+        self.widget.setMaximumSize(QSize(250, 16777215))
         self.verticalLayout_3 = QVBoxLayout(self.widget)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.verticalLayout_3.setContentsMargins(24, 24, 24, 24)
+        self.verticalLayout_3.setContentsMargins(24, 24, 24, 0)
         self.label_5 = QLabel(self.widget)
         self.label_5.setObjectName(u"label_5")
         self.label_5.setMaximumSize(QSize(16777215, 48))
@@ -489,17 +480,36 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.label_5)
 
+        self.scrollArea = QScrollArea(self.widget)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setFrameShape(QFrame.NoFrame)
+        self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_2 = QWidget()
+        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 202, 465))
+        self.gridLayout = QGridLayout(self.scrollAreaWidgetContents_2)
+        self.gridLayout.setSpacing(0)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.queue_list = QVBoxLayout()
         self.queue_list.setObjectName(u"queue_list")
 
-        self.verticalLayout_3.addLayout(self.queue_list)
+        self.gridLayout.addLayout(self.queue_list, 0, 0, 1, 1)
 
         self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.verticalLayout_3.addItem(self.verticalSpacer_4)
+        self.gridLayout.addItem(self.verticalSpacer_4, 1, 0, 1, 1)
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents_2)
+
+        self.verticalLayout_3.addWidget(self.scrollArea)
 
 
-        self.gridLayout_2.addWidget(self.widget, 0, 2, 1, 1)
+        self.gridLayout_4.addWidget(self.widget, 1, 1, 1, 1)
+
+
+        self.gridLayout_2.addWidget(self.topbar_widget, 0, 1, 1, 1)
 
         self.gridLayout_2.setColumnStretch(1, 1)
         MainWindow.setCentralWidget(self.container)
