@@ -38,8 +38,6 @@ class MainLayout(QMainWindow):
         self._controller.player_service.playback_muted_changed.connect(self.on_playback_muted_changed)
         self._controller.view_model.song_favourite_changed.connect(self.on_song_favourite_changed)
 
-        self.ui.input_search.textChanged.connect(self._controller.change_search_query)
-        self.ui.btn_search.clicked.connect(self._controller.on_search)
         self.ui.btn_play.clicked.connect(self._controller.on_play_toggle)
         self.ui.btn_pause.clicked.connect(self._controller.on_play_toggle)
         self.ui.btn_previous.clicked.connect(self._controller.on_previous)
@@ -53,6 +51,8 @@ class MainLayout(QMainWindow):
 
         self.ui.btn_home.clicked.connect(self._base_controller.switch_to_home)
         self.ui.btn_playlist.clicked.connect(self._base_controller.switch_to_playlist)
+        self.ui.btn_favourite.clicked.connect(self._base_controller.switch_to_favourite)
+        self.ui.btn_setting.clicked.connect(self._base_controller.switch_to_setting)
 
     def prepare_ui(self):
         self.ui.btn_pause.setVisible(False)

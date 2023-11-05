@@ -1,7 +1,7 @@
 from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QWidget
 
-from ui.ui_home_view import Ui_home_view
+from ui.ui_home_view import Ui_home_view as Ui
 
 
 class HomeView(QWidget):
@@ -10,11 +10,11 @@ class HomeView(QWidget):
 
         self._controller = None
 
-        self.ui = Ui_home_view()
+        self.ui = Ui()
         self.ui.setupUi(self)
 
     def bind(self, controller):
-        self._controller = controller.index
+        self._controller = controller.home
 
         self.ui.input_search.textChanged.connect(self._controller.change_search_query)
         self.ui.btn_search.clicked.connect(self._controller.on_search)

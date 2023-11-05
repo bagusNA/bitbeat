@@ -1,9 +1,9 @@
 from PySide6.QtWidgets import QWidget
 
-from ui.ui_playlist_view import Ui_playlist_view as Ui
+from ui.ui_setting_view import Ui_setting_view as Ui
 
 
-class PlaylistView(QWidget):
+class SettingView(QWidget):
     def __init__(self):
         super().__init__()
 

@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Convert UI &amp; Run" type="CompoundRunConfigurationType">
+  <configuration default="false" name="Compile &amp; Run" type="CompoundRunConfigurationType">
+    <toRun name="Compile Assets" type="PythonConfigurationType" />
     <toRun name="Convert Favourite View" type="PythonConfigurationType" />
     <toRun name="Convert Home View" type="PythonConfigurationType" />
     <toRun name="Convert Layout" type="PythonConfigurationType" />

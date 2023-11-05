@@ -26,3 +26,9 @@ class Controller:
 
     def switch_to_playlist(self):
         return self.switch_view('playlist')
+
+    def switch_to_favourite(self):
+        return self.switch_view('favourite')
+
+    def switch_to_setting(self):
+        return self.switch_view('setting')
