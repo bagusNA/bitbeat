@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Convert UI" type="PythonConfigurationType" factoryName="Python" activateToolWindowBeforeRun="false">
+  <configuration default="false" name="Convert Playlist View" type="PythonConfigurationType" factoryName="Python" activateToolWindowBeforeRun="false">
     <module name="music-player" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
@@ -13,7 +13,7 @@
     <option name="ADD_CONTENT_ROOTS" value="true" />
     <option name="ADD_SOURCE_ROOTS" value="true" />
     <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/bin/pyside6-uic" />
-    <option name="PARAMETERS" value="./ui/mainwindow.ui -o ./ui/ui_mainwindow.py" />
+    <option name="PARAMETERS" value="./ui/playlist_view.ui -o ./ui/ui_playlist_view.py" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <option name="EMULATE_TERMINAL" value="false" />
     <option name="MODULE_MODE" value="false" />

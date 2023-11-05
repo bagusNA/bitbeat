@@ -1,4 +1,4 @@
-from controllers.IndexController import IndexController
+from controllers.HomeController import HomeController
 from view_models.main import ViewModel
 from views.main import View
 from services.main import Service
@@ -13,7 +13,16 @@ class Controller:
         self.view = view
         self.service = service
 
-        self.index = IndexController(self.view_model, self.view, self.service)
+        self.home = HomeController(self.view_model, self.view, self.service)
 
     def start(self):
         self.view.start()
+
+    def switch_view(self, name):
+        return self.view.switch(name)
+
+    def switch_to_home(self):
+        return self.switch_view('home')
+
+    def switch_to_playlist(self):
+        return self.switch_view('playlist')

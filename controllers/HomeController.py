@@ -1,23 +1,20 @@
 from PySide6.QtCore import QObject, Slot
-from ui.ui_mainwindow import Ui_MainWindow
 from view_models.main import ViewModel
 from views.main import View
 from services.main import Service
 
 
-class IndexController(QObject):
+class HomeController(QObject):
     def __init__(self,
                  view_model: ViewModel,
                  view: View,
                  service: Service):
         super().__init__()
 
-        self.view_model = view_model.index
-        self._view = view.views['index']
-        self._ui: Ui_MainWindow = view.ui('index')
-
+        # self._view = view
         self._service = service
         self.player_service = self._service.audio_player
+        self.view_model = view_model.index
 
     @Slot(bool)
     def on_search(self):

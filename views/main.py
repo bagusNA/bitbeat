@@ -1,30 +1,25 @@
-from .IndexView import IndexView
+from .HomeView import HomeView
+from .PlaylistView import PlaylistView
+from .layouts.MainLayout import MainLayout
 
 
 class View:
     def __init__(self):
         self.current_view = None
+        self.layout = MainLayout(self)
+
         self.views = {
-            'index': IndexView()
+            'home': HomeView(),
+            'playlist': PlaylistView(),
         }
 
+        self.layout.register_views(self.views)
+
     def bind(self, controller):
-        self.views['index'].bind(controller)
+        self.layout.bind(controller)
 
-    def ui(self, name: str):
-        return self.views[name].ui
-
-    def switch(self, name, hide=False):
-        new_view = self.views[name]
-
-        if self.current_view is not None:
-            if hide:
-                self.current_view.hide()
-            else:
-                self.current_view.destroy()
-
-        self.current_view = new_view
-        self.current_view.show()
+    def switch(self, name):
+        self.layout.switch_view(name)
 
     def start(self):
-        self.switch('index')
+        self.layout.show()

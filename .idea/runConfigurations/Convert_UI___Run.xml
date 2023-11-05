@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Convert UI &amp; Run" type="CompoundRunConfigurationType">
+    <toRun name="Convert Home View" type="PythonConfigurationType" />
+    <toRun name="Convert Layout" type="PythonConfigurationType" />
+    <toRun name="Convert Playlist View" type="PythonConfigurationType" />
+    <toRun name="Run" type="PythonConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>

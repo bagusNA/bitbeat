@@ -8,7 +8,6 @@ from view_models.main import ViewModel
 from views.main import View
 from services.main import Service
 from models.Migration import Migration
-from models.Song import Song
 
 
 class BitBeatMusicPlayer(QApplication):

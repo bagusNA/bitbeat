@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(947, 648)
+        MainWindow.resize(956, 648)
         icon = QIcon()
         icon.addFile(u":/images/images/logo.svg", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
@@ -37,85 +37,6 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setSpacing(0)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.collapsed_sidebar_widget = QWidget(self.container)
-        self.collapsed_sidebar_widget.setObjectName(u"collapsed_sidebar_widget")
-        self.collapsed_sidebar_widget.setMinimumSize(QSize(64, 0))
-        self.collapsed_sidebar_widget.setMaximumSize(QSize(16777215, 16777215))
-        self.verticalLayout = QVBoxLayout(self.collapsed_sidebar_widget)
-        self.verticalLayout.setSpacing(0)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(8, 8, 8, 8)
-        self.label = QLabel(self.collapsed_sidebar_widget)
-        self.label.setObjectName(u"label")
-        self.label.setMinimumSize(QSize(64, 52))
-        self.label.setMaximumSize(QSize(64, 52))
-        font = QFont()
-        font.setPointSize(16)
-        self.label.setFont(font)
-        self.label.setPixmap(QPixmap(u":/images/images/logo-compact.svg"))
-        self.label.setScaledContents(False)
-        self.label.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout.addWidget(self.label)
-
-        self.verticalLayout_2 = QVBoxLayout()
-        self.verticalLayout_2.setSpacing(0)
-        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(-1, 24, -1, 0)
-        self.pushButton = QPushButton(self.collapsed_sidebar_widget)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMinimumSize(QSize(64, 64))
-        self.pushButton.setMaximumSize(QSize(64, 64))
-        icon1 = QIcon()
-        icon1.addFile(u":/icons/icons/home.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton.setIcon(icon1)
-        self.pushButton.setIconSize(QSize(24, 24))
-
-        self.verticalLayout_2.addWidget(self.pushButton)
-
-        self.pushButton_2 = QPushButton(self.collapsed_sidebar_widget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        self.pushButton_2.setMinimumSize(QSize(64, 64))
-        self.pushButton_2.setMaximumSize(QSize(64, 64))
-        icon2 = QIcon()
-        icon2.addFile(u":/icons/icons/music-album.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_2.setIcon(icon2)
-        self.pushButton_2.setIconSize(QSize(24, 24))
-
-        self.verticalLayout_2.addWidget(self.pushButton_2)
-
-        self.pushButton_3 = QPushButton(self.collapsed_sidebar_widget)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setMinimumSize(QSize(64, 64))
-        self.pushButton_3.setMaximumSize(QSize(64, 64))
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/icons/heart.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_3.setIcon(icon3)
-        self.pushButton_3.setIconSize(QSize(24, 24))
-
-        self.verticalLayout_2.addWidget(self.pushButton_3)
-
-        self.pushButton_13 = QPushButton(self.collapsed_sidebar_widget)
-        self.pushButton_13.setObjectName(u"pushButton_13")
-        self.pushButton_13.setMinimumSize(QSize(64, 64))
-        self.pushButton_13.setMaximumSize(QSize(64, 64))
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/icons/settings.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_13.setIcon(icon4)
-        self.pushButton_13.setIconSize(QSize(24, 24))
-
-        self.verticalLayout_2.addWidget(self.pushButton_13)
-
-
-        self.verticalLayout.addLayout(self.verticalLayout_2)
-
-        self.verticalSpacer = QSpacerItem(20, 309, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout.addItem(self.verticalSpacer)
-
-
-        self.gridLayout_2.addWidget(self.collapsed_sidebar_widget, 0, 0, 1, 1)
-
         self.widget_3 = QWidget(self.container)
         self.widget_3.setObjectName(u"widget_3")
         self.gridLayout_3 = QGridLayout(self.widget_3)
@@ -146,19 +67,22 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setContentsMargins(0, -1, -1, -1)
         self.song_title_label = QLabel(self.widget_3)
         self.song_title_label.setObjectName(u"song_title_label")
-        font1 = QFont()
-        font1.setPointSize(11)
-        font1.setBold(True)
-        self.song_title_label.setFont(font1)
+        self.song_title_label.setMinimumSize(QSize(0, 0))
+        self.song_title_label.setMaximumSize(QSize(300, 16777215))
+        font = QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        self.song_title_label.setFont(font)
         self.song_title_label.setAlignment(Qt.AlignBottom|Qt.AlignLeading|Qt.AlignLeft)
 
         self.verticalLayout_5.addWidget(self.song_title_label)
 
         self.song_artist_label = QLabel(self.widget_3)
         self.song_artist_label.setObjectName(u"song_artist_label")
-        font2 = QFont()
-        font2.setPointSize(10)
-        self.song_artist_label.setFont(font2)
+        self.song_artist_label.setMaximumSize(QSize(300, 16777215))
+        font1 = QFont()
+        font1.setPointSize(8)
+        self.song_artist_label.setFont(font1)
         self.song_artist_label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
 
         self.verticalLayout_5.addWidget(self.song_artist_label)
@@ -181,9 +105,9 @@ class Ui_MainWindow(object):
         self.btn_lyrics.setObjectName(u"btn_lyrics")
         self.btn_lyrics.setMinimumSize(QSize(48, 32))
         self.btn_lyrics.setMaximumSize(QSize(48, 32))
-        icon5 = QIcon()
-        icon5.addFile(u":/icons/icons/playlist.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_lyrics.setIcon(icon5)
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/icons/playlist.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_lyrics.setIcon(icon1)
 
         self.horizontalLayout.addWidget(self.btn_lyrics)
 
@@ -191,9 +115,9 @@ class Ui_MainWindow(object):
         self.btn_volume.setObjectName(u"btn_volume")
         self.btn_volume.setMinimumSize(QSize(48, 32))
         self.btn_volume.setMaximumSize(QSize(48, 32))
-        icon6 = QIcon()
-        icon6.addFile(u":/icons/icons/volume-up-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_volume.setIcon(icon6)
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/icons/volume-up-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_volume.setIcon(icon2)
 
         self.horizontalLayout.addWidget(self.btn_volume)
 
@@ -201,9 +125,9 @@ class Ui_MainWindow(object):
         self.btn_volume_muted.setObjectName(u"btn_volume_muted")
         self.btn_volume_muted.setMinimumSize(QSize(48, 32))
         self.btn_volume_muted.setMaximumSize(QSize(48, 32))
-        icon7 = QIcon()
-        icon7.addFile(u":/icons/icons/volume-off-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_volume_muted.setIcon(icon7)
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/icons/volume-off-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_volume_muted.setIcon(icon3)
 
         self.horizontalLayout.addWidget(self.btn_volume_muted)
 
@@ -233,9 +157,9 @@ class Ui_MainWindow(object):
         self.btn_shuffle.setMinimumSize(QSize(48, 32))
         self.btn_shuffle.setMaximumSize(QSize(32, 32))
         self.btn_shuffle.setStyleSheet(u"")
-        icon8 = QIcon()
-        icon8.addFile(u":/icons/icons/playlist-shuffle.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_shuffle.setIcon(icon8)
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/icons/playlist-shuffle.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_shuffle.setIcon(icon4)
 
         self.horizontalLayout_2.addWidget(self.btn_shuffle)
 
@@ -243,9 +167,9 @@ class Ui_MainWindow(object):
         self.btn_previous.setObjectName(u"btn_previous")
         self.btn_previous.setMinimumSize(QSize(48, 32))
         self.btn_previous.setMaximumSize(QSize(32, 32))
-        icon9 = QIcon()
-        icon9.addFile(u":/icons/icons/player-start-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_previous.setIcon(icon9)
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/icons/player-start-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_previous.setIcon(icon5)
 
         self.horizontalLayout_2.addWidget(self.btn_previous)
 
@@ -253,9 +177,9 @@ class Ui_MainWindow(object):
         self.btn_play.setObjectName(u"btn_play")
         self.btn_play.setMinimumSize(QSize(48, 32))
         self.btn_play.setMaximumSize(QSize(32, 32))
-        icon10 = QIcon()
-        icon10.addFile(u":/icons/icons/player-play-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_play.setIcon(icon10)
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/icons/player-play-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_play.setIcon(icon6)
 
         self.horizontalLayout_2.addWidget(self.btn_play)
 
@@ -264,9 +188,9 @@ class Ui_MainWindow(object):
         self.btn_pause.setEnabled(True)
         self.btn_pause.setMinimumSize(QSize(48, 32))
         self.btn_pause.setMaximumSize(QSize(32, 32))
-        icon11 = QIcon()
-        icon11.addFile(u":/icons/icons/player-pause-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_pause.setIcon(icon11)
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/icons/player-pause-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_pause.setIcon(icon7)
 
         self.horizontalLayout_2.addWidget(self.btn_pause)
 
@@ -274,9 +198,9 @@ class Ui_MainWindow(object):
         self.btn_next.setObjectName(u"btn_next")
         self.btn_next.setMinimumSize(QSize(48, 32))
         self.btn_next.setMaximumSize(QSize(32, 32))
-        icon12 = QIcon()
-        icon12.addFile(u":/icons/icons/player-end-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_next.setIcon(icon12)
+        icon8 = QIcon()
+        icon8.addFile(u":/icons/icons/player-end-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_next.setIcon(icon8)
 
         self.horizontalLayout_2.addWidget(self.btn_next)
 
@@ -284,9 +208,9 @@ class Ui_MainWindow(object):
         self.btn_favourited.setObjectName(u"btn_favourited")
         self.btn_favourited.setMinimumSize(QSize(48, 32))
         self.btn_favourited.setMaximumSize(QSize(48, 32))
-        icon13 = QIcon()
-        icon13.addFile(u":/icons/icons/heart-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_favourited.setIcon(icon13)
+        icon9 = QIcon()
+        icon9.addFile(u":/icons/icons/heart-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_favourited.setIcon(icon9)
 
         self.horizontalLayout_2.addWidget(self.btn_favourited)
 
@@ -294,7 +218,9 @@ class Ui_MainWindow(object):
         self.btn_not_favourited.setObjectName(u"btn_not_favourited")
         self.btn_not_favourited.setMinimumSize(QSize(48, 32))
         self.btn_not_favourited.setMaximumSize(QSize(32, 32))
-        self.btn_not_favourited.setIcon(icon3)
+        icon10 = QIcon()
+        icon10.addFile(u":/icons/icons/heart.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_not_favourited.setIcon(icon10)
 
         self.horizontalLayout_2.addWidget(self.btn_not_favourited)
 
@@ -322,7 +248,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addLayout(self.gridLayout_6, 0, 1, 1, 1)
 
-        self.gridLayout_3.setColumnStretch(0, 1)
+        self.gridLayout_3.setColumnStretch(0, 364)
         self.gridLayout_3.setColumnStretch(1, 1)
         self.gridLayout_3.setColumnStretch(2, 1)
 
@@ -332,8 +258,8 @@ class Ui_MainWindow(object):
         self.topbar_widget.setObjectName(u"topbar_widget")
         self.gridLayout_4 = QGridLayout(self.topbar_widget)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
-        self.stackedWidget = QStackedWidget(self.topbar_widget)
-        self.stackedWidget.setObjectName(u"stackedWidget")
+        self.view_slot = QStackedWidget(self.topbar_widget)
+        self.view_slot.setObjectName(u"view_slot")
         self.page = QWidget()
         self.page.setObjectName(u"page")
         self.gridLayout_7 = QGridLayout(self.page)
@@ -363,9 +289,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setContentsMargins(-1, 0, -1, 24)
         self.page_title_label = QLabel(self.page)
         self.page_title_label.setObjectName(u"page_title_label")
-        font3 = QFont()
-        font3.setPointSize(24)
-        self.page_title_label.setFont(font3)
+        font2 = QFont()
+        font2.setPointSize(24)
+        self.page_title_label.setFont(font2)
 
         self.horizontalLayout_4.addWidget(self.page_title_label)
 
@@ -388,16 +314,16 @@ class Ui_MainWindow(object):
         self.btn_search = QPushButton(self.page)
         self.btn_search.setObjectName(u"btn_search")
         self.btn_search.setMinimumSize(QSize(0, 36))
-        icon14 = QIcon()
-        icon14.addFile(u":/icons/icons/search.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_search.setIcon(icon14)
+        icon11 = QIcon()
+        icon11.addFile(u":/icons/icons/search.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_search.setIcon(icon11)
 
         self.horizontalLayout_4.addWidget(self.btn_search)
 
 
         self.gridLayout_7.addLayout(self.horizontalLayout_4, 0, 0, 1, 1)
 
-        self.stackedWidget.addWidget(self.page)
+        self.view_slot.addWidget(self.page)
         self.page_2 = QWidget()
         self.page_2.setObjectName(u"page_2")
         self.gridLayout_8 = QGridLayout(self.page_2)
@@ -407,7 +333,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setContentsMargins(-1, -1, -1, 24)
         self.label_3 = QLabel(self.page_2)
         self.label_3.setObjectName(u"label_3")
-        self.label_3.setFont(font3)
+        self.label_3.setFont(font2)
 
         self.horizontalLayout_5.addWidget(self.label_3)
 
@@ -418,7 +344,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_8.addItem(self.verticalSpacer_2, 1, 0, 1, 1)
 
-        self.stackedWidget.addWidget(self.page_2)
+        self.view_slot.addWidget(self.page_2)
         self.page_3 = QWidget()
         self.page_3.setObjectName(u"page_3")
         self.gridLayout_9 = QGridLayout(self.page_3)
@@ -428,7 +354,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setContentsMargins(-1, -1, -1, 24)
         self.label_4 = QLabel(self.page_3)
         self.label_4.setObjectName(u"label_4")
-        self.label_4.setFont(font3)
+        self.label_4.setFont(font2)
 
         self.horizontalLayout_6.addWidget(self.label_4)
 
@@ -439,7 +365,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_9.addItem(self.verticalSpacer_5, 1, 0, 1, 1)
 
-        self.stackedWidget.addWidget(self.page_3)
+        self.view_slot.addWidget(self.page_3)
         self.page_4 = QWidget()
         self.page_4.setObjectName(u"page_4")
         self.gridLayout_10 = QGridLayout(self.page_4)
@@ -449,7 +375,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_7.setContentsMargins(-1, -1, -1, 24)
         self.label_6 = QLabel(self.page_4)
         self.label_6.setObjectName(u"label_6")
-        self.label_6.setFont(font3)
+        self.label_6.setFont(font2)
 
         self.horizontalLayout_7.addWidget(self.label_6)
 
@@ -460,9 +386,9 @@ class Ui_MainWindow(object):
 
         self.gridLayout_10.addItem(self.verticalSpacer_6, 1, 0, 1, 1)
 
-        self.stackedWidget.addWidget(self.page_4)
+        self.view_slot.addWidget(self.page_4)
 
-        self.gridLayout_4.addWidget(self.stackedWidget, 1, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.view_slot, 1, 0, 1, 1)
 
         self.widget = QWidget(self.topbar_widget)
         self.widget.setObjectName(u"widget")
@@ -474,7 +400,9 @@ class Ui_MainWindow(object):
         self.label_5 = QLabel(self.widget)
         self.label_5.setObjectName(u"label_5")
         self.label_5.setMaximumSize(QSize(16777215, 48))
-        self.label_5.setFont(font)
+        font3 = QFont()
+        font3.setPointSize(16)
+        self.label_5.setFont(font3)
         self.label_5.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
         self.label_5.setMargin(0)
 
@@ -511,6 +439,81 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.topbar_widget, 0, 1, 1, 1)
 
+        self.collapsed_sidebar_widget = QWidget(self.container)
+        self.collapsed_sidebar_widget.setObjectName(u"collapsed_sidebar_widget")
+        self.collapsed_sidebar_widget.setMinimumSize(QSize(64, 0))
+        self.collapsed_sidebar_widget.setMaximumSize(QSize(16777215, 16777215))
+        self.verticalLayout = QVBoxLayout(self.collapsed_sidebar_widget)
+        self.verticalLayout.setSpacing(0)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(8, 8, 8, 8)
+        self.label = QLabel(self.collapsed_sidebar_widget)
+        self.label.setObjectName(u"label")
+        self.label.setMinimumSize(QSize(64, 52))
+        self.label.setMaximumSize(QSize(64, 52))
+        self.label.setFont(font3)
+        self.label.setPixmap(QPixmap(u":/images/images/logo-compact.svg"))
+        self.label.setScaledContents(False)
+        self.label.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout.addWidget(self.label)
+
+        self.verticalLayout_2 = QVBoxLayout()
+        self.verticalLayout_2.setSpacing(0)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(-1, 24, -1, 0)
+        self.btn_home = QPushButton(self.collapsed_sidebar_widget)
+        self.btn_home.setObjectName(u"btn_home")
+        self.btn_home.setMinimumSize(QSize(64, 64))
+        self.btn_home.setMaximumSize(QSize(64, 64))
+        icon12 = QIcon()
+        icon12.addFile(u":/icons/icons/home.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_home.setIcon(icon12)
+        self.btn_home.setIconSize(QSize(24, 24))
+
+        self.verticalLayout_2.addWidget(self.btn_home)
+
+        self.btn_playlist = QPushButton(self.collapsed_sidebar_widget)
+        self.btn_playlist.setObjectName(u"btn_playlist")
+        self.btn_playlist.setMinimumSize(QSize(64, 64))
+        self.btn_playlist.setMaximumSize(QSize(64, 64))
+        icon13 = QIcon()
+        icon13.addFile(u":/icons/icons/music-album.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_playlist.setIcon(icon13)
+        self.btn_playlist.setIconSize(QSize(24, 24))
+
+        self.verticalLayout_2.addWidget(self.btn_playlist)
+
+        self.btn_favourite = QPushButton(self.collapsed_sidebar_widget)
+        self.btn_favourite.setObjectName(u"btn_favourite")
+        self.btn_favourite.setMinimumSize(QSize(64, 64))
+        self.btn_favourite.setMaximumSize(QSize(64, 64))
+        self.btn_favourite.setIcon(icon10)
+        self.btn_favourite.setIconSize(QSize(24, 24))
+
+        self.verticalLayout_2.addWidget(self.btn_favourite)
+
+        self.btn_setting = QPushButton(self.collapsed_sidebar_widget)
+        self.btn_setting.setObjectName(u"btn_setting")
+        self.btn_setting.setMinimumSize(QSize(64, 64))
+        self.btn_setting.setMaximumSize(QSize(64, 64))
+        icon14 = QIcon()
+        icon14.addFile(u":/icons/icons/settings.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_setting.setIcon(icon14)
+        self.btn_setting.setIconSize(QSize(24, 24))
+
+        self.verticalLayout_2.addWidget(self.btn_setting)
+
+
+        self.verticalLayout.addLayout(self.verticalLayout_2)
+
+        self.verticalSpacer = QSpacerItem(20, 309, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout.addItem(self.verticalSpacer)
+
+
+        self.gridLayout_2.addWidget(self.collapsed_sidebar_widget, 0, 0, 1, 1)
+
         self.gridLayout_2.setColumnStretch(1, 1)
         MainWindow.setCentralWidget(self.container)
         self.statusbar = QStatusBar(MainWindow)
@@ -519,7 +522,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.view_slot.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -527,11 +530,6 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"BitBeat Music Player", None))
-        self.label.setText("")
-        self.pushButton.setText("")
-        self.pushButton_2.setText("")
-        self.pushButton_3.setText("")
-        self.pushButton_13.setText("")
         self.album_cover.setText(QCoreApplication.translate("MainWindow", u"Album", None))
         self.song_title_label.setText(QCoreApplication.translate("MainWindow", u"ReI", None))
         self.song_artist_label.setText(QCoreApplication.translate("MainWindow", u"The Oral Cigarettes", None))
@@ -555,5 +553,10 @@ class Ui_MainWindow(object):
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Favorites", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Settings", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Queue", None))
+        self.label.setText("")
+        self.btn_home.setText("")
+        self.btn_playlist.setText("")
+        self.btn_favourite.setText("")
+        self.btn_setting.setText("")
     # retranslateUi
 

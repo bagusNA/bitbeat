@@ -10,18 +10,24 @@ from utils.utils import seconds_to_minutes, remove_all_widgets
 from widgets.QueueListWidget import QueueListWidget
 
 
-class IndexView(QMainWindow):
-    def __init__(self):
+class MainLayout(QMainWindow):
+    def __init__(self, base_view):
         super().__init__()
 
+        self._base_controller = None
         self._controller = None
+        self._base_view = base_view
+
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.views = {}
 
         self.prepare_ui()
 
     def bind(self, controller):
-        self._controller = controller.index
+        self._base_controller = controller
+        self._controller = controller.home
 
         self._controller.player_service.current_song_changed.connect(self.on_song_change)
         self._controller.player_service.queue_changed.connect(self.on_queue_change)
@@ -45,11 +51,29 @@ class IndexView(QMainWindow):
         self.ui.playback_slider.valueChanged.connect(self._controller.on_playback_scrobble)
         self.ui.volume_slider.valueChanged.connect(self._controller.on_volume_change)
 
+        self.ui.btn_home.clicked.connect(self._base_controller.switch_to_home)
+        self.ui.btn_playlist.clicked.connect(self._base_controller.switch_to_playlist)
+
     def prepare_ui(self):
         self.ui.btn_pause.setVisible(False)
         self.ui.btn_volume_muted.setVisible(False)
         self.ui.btn_favourited.setVisible(False)
         self.ui.playback_slider.setTracking(False)
+
+    def register_views(self, views: dict) -> None:
+        self.views = views
+
+        for name, view in views.items():
+            self.ui.view_slot.addWidget(view)
+
+        self.set_view(0)
+
+    def set_view(self, index: int = 0):
+        self.ui.view_slot.setCurrentIndex(index)
+
+    def switch_view(self, view_name):
+        selected_index = list(self.views.keys()).index(view_name)
+        self.set_view(selected_index)
 
     @Slot(str)
     def on_search_query_changed(self, value: str) -> None:
