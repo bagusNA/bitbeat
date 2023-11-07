@@ -89,6 +89,11 @@ class MainLayout(QMainWindow):
 
     @Slot(list)
     def on_queue_change(self, songs: list[Song]) -> None:
+        length_time = sum(song.duration for song in songs)
+        minutes, seconds = seconds_to_minutes(length_time, formatted=False)
+
+        self.ui.queue_length_info_label.setText(f"{len(songs)} songs, {minutes} min {seconds} sec")
+
         self.build_queue(songs)
 
     @Slot(bool)

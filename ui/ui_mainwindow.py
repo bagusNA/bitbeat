@@ -360,6 +360,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.queue_title_label)
 
+        self.queue_length_info_label = QLabel(self.queue_widget)
+        self.queue_length_info_label.setObjectName(u"queue_length_info_label")
+        font3 = QFont()
+        font3.setPointSize(9)
+        self.queue_length_info_label.setFont(font3)
+
+        self.verticalLayout_3.addWidget(self.queue_length_info_label)
+
         self.scrollArea = QScrollArea(self.queue_widget)
         self.scrollArea.setObjectName(u"scrollArea")
         self.scrollArea.setFrameShape(QFrame.NoFrame)
@@ -367,7 +375,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 202, 495))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 202, 471))
         self.gridLayout = QGridLayout(self.scrollAreaWidgetContents_2)
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
@@ -424,5 +432,6 @@ class Ui_MainWindow(object):
         self.btn_favourite.setText("")
         self.btn_setting.setText("")
         self.queue_title_label.setText(QCoreApplication.translate("MainWindow", u"Queue", None))
+        self.queue_length_info_label.setText("")
     # retranslateUi
 

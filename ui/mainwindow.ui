@@ -753,6 +753,18 @@
         </widget>
        </item>
        <item>
+        <widget class="QLabel" name="queue_length_info_label">
+         <property name="font">
+          <font>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QScrollArea" name="scrollArea">
          <property name="frameShape">
           <enum>QFrame::NoFrame</enum>
@@ -769,7 +781,7 @@
             <x>0</x>
             <y>0</y>
             <width>202</width>
-            <height>495</height>
+            <height>471</height>
            </rect>
           </property>
           <layout class="QGridLayout" name="gridLayout">
