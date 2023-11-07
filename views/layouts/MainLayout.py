@@ -134,6 +134,6 @@ class MainLayout(QMainWindow):
         remove_all_widgets(container)
 
         for index, song in enumerate(queue):
-            btn = QueueListItem(text=song.title)
+            btn = QueueListItem(song)
             btn.clicked.connect(lambda *args, idx=index: self._controller.on_play_on_index(idx))
             container.addWidget(btn)

@@ -1,9 +1,20 @@
 * {
     font-family: Nunito, 'Google Sans', sans-serif;
+    color: '#FFFFFF'
 }
 
 QMainWindow {
     background-color: '#24273a';
+}
+
+QScrollArea,
+QScrollArea > QWidget > QWidget,
+QListView {
+    background: transparent;
+}
+
+QScrollArea > QWidget > QScrollBar {
+    background: palette(base);
 }
 
 QPushButton,
@@ -22,12 +33,6 @@ FavouriteListItem[pressed="true"] {
     background-color: '#494d64';
 }
 
-QScrollArea,
-QScrollArea > QWidget > QWidget,
-QListView {
-    background: transparent;
-}
-
-QScrollArea > QWidget > QScrollBar {
-    background: palette(base);
+QueueListItem {
+    color: '#FFFFFF';
 }

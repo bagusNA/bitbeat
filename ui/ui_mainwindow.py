@@ -43,7 +43,7 @@ class Ui_MainWindow(object):
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_3.setHorizontalSpacing(24)
         self.gridLayout_3.setVerticalSpacing(0)
-        self.gridLayout_3.setContentsMargins(24, 12, 24, 12)
+        self.gridLayout_3.setContentsMargins(-1, -1, -1, 0)
         self.gridLayout_5 = QGridLayout()
         self.gridLayout_5.setObjectName(u"gridLayout_5")
         self.gridLayout_5.setHorizontalSpacing(12)
@@ -248,7 +248,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addLayout(self.gridLayout_6, 0, 1, 1, 1)
 
-        self.gridLayout_3.setColumnStretch(0, 364)
+        self.gridLayout_3.setColumnStretch(0, 1)
         self.gridLayout_3.setColumnStretch(1, 1)
         self.gridLayout_3.setColumnStretch(2, 1)
 
@@ -367,13 +367,15 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 202, 477))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 202, 495))
         self.gridLayout = QGridLayout(self.scrollAreaWidgetContents_2)
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.queue_list = QVBoxLayout()
+        self.queue_list.setSpacing(16)
         self.queue_list.setObjectName(u"queue_list")
+        self.queue_list.setContentsMargins(-1, 18, -1, -1)
 
         self.gridLayout.addLayout(self.queue_list, 0, 0, 1, 1)
 
