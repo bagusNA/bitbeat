@@ -1,5 +1,5 @@
-from PySide6.QtCore import Signal
-from PySide6.QtGui import QMouseEvent
+from PySide6.QtCore import Signal, Qt
+from PySide6.QtGui import QMouseEvent, QPixmap
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QHBoxLayout
 from models.Song import Song
 from utils.utils import Font
@@ -8,7 +8,7 @@ from utils.utils import Font
 class FavouriteListItemWidget(QWidget):
     clicked = Signal(object)
 
-    def __init__(self, song: Song, parent=None):
+    def __init__(self, song: Song, img: QPixmap, parent=None):
         super(FavouriteListItemWidget, self).__init__(parent)
 
         self._song = song
@@ -18,6 +18,9 @@ class FavouriteListItemWidget(QWidget):
         self.artist_label = QLabel(song.artist)
 
         self.album_cover.setFixedSize(64, 64)
+        self.album_cover.setPixmap(img)
+        self.album_cover.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
         Font.set_font_size(self.title_label, 11)
         Font.set_font_size(self.artist_label, 8)
 

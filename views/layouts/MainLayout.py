@@ -88,7 +88,7 @@ class MainLayout(QMainWindow):
         self.ui.btn_favourited.setVisible(song.is_favourite)
         self.ui.btn_not_favourited.setVisible(not song.is_favourite)
 
-        self.set_album_cover(song.thumbnail_url)
+        self.set_album_cover(song)
 
     @Slot(list)
     def on_queue_change(self, songs: list[Song]) -> None:
@@ -124,17 +124,13 @@ class MainLayout(QMainWindow):
         self.ui.btn_favourited.setVisible(is_favourited)
         self.ui.btn_not_favourited.setVisible(not is_favourited)
 
-    def set_album_cover(self, url: str) -> None:
-        img_data = urlopen(url).read()
-
-        album_cover = QPixmap()
-        album_cover.loadFromData(img_data)
-        scaled_album_cover = album_cover.scaled(
+    def set_album_cover(self, song: Song) -> None:
+        album_cover = self._base_controller.service.cacher.image_from_song(
+            song,
             self.ui.album_cover.size(),
-            Qt.AspectRatioMode.KeepAspectRatioByExpanding,
-            Qt.TransformationMode.SmoothTransformation
         )
-        self.ui.album_cover.setPixmap(scaled_album_cover)
+
+        self.ui.album_cover.setPixmap(album_cover)
 
     def build_queue(self, queue: list[Song]):
         container = self.ui.queue_list

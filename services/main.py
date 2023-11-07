@@ -2,6 +2,7 @@ from .AudioPlayerService import AudioPlayerService
 from .DiscordPresenceService import DiscordPresenceService
 from .LibraryService import LibraryService
 from .SongFetcherService import SongFetcherService
+from .CacherService import CacherService
 
 
 class Service:
@@ -10,3 +11,4 @@ class Service:
         self.audio_player = AudioPlayerService(self)
         self.discord_presence = DiscordPresenceService()
         self.library = LibraryService()
+        self.cacher = CacherService()
