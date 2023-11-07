@@ -485,7 +485,7 @@
      <widget class="QWidget" name="main_widget" native="true">
       <layout class="QGridLayout" name="gridLayout_4">
        <property name="bottomMargin">
-        <number>60</number>
+        <number>0</number>
        </property>
        <item row="1" column="0">
         <widget class="QStackedWidget" name="view_slot"/>

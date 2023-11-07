@@ -258,7 +258,7 @@ class Ui_MainWindow(object):
         self.main_widget.setObjectName(u"main_widget")
         self.gridLayout_4 = QGridLayout(self.main_widget)
         self.gridLayout_4.setObjectName(u"gridLayout_4")
-        self.gridLayout_4.setContentsMargins(-1, -1, -1, 60)
+        self.gridLayout_4.setContentsMargins(-1, -1, -1, 0)
         self.view_slot = QStackedWidget(self.main_widget)
         self.view_slot.setObjectName(u"view_slot")
 
