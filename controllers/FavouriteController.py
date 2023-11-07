@@ -1,7 +1,9 @@
-from PySide6.QtCore import QObject
+from PySide6.QtCore import QObject, Slot
+
+from services.main import Service
 from view_models.main import ViewModel
 from views.main import View
-from services.main import Service
+from models.Song import Song
 
 
 class FavouriteController(QObject):
@@ -14,3 +16,7 @@ class FavouriteController(QObject):
         # self._view = view
         self.service = service
         self.view_model = view_model.index
+
+    @Slot(Song)
+    def on_song_item_clicked(self, song: Song):
+        self.service.audio_player.search_song(song.url)

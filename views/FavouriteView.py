@@ -32,6 +32,8 @@ class FavouriteView(QWidget):
         song_item = FavouriteListItemWidget(song)
         self.ui.favourite_list.insertWidget(index, song_item)
 
+        song_item.clicked.connect(self._controller.on_song_item_clicked)
+
     @Slot(Song)
     def on_favourited_song_change(self, changed_song: Song):
         if changed_song.is_favourite:

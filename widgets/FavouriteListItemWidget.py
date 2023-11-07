@@ -1,11 +1,17 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QHBoxLayout, QSpacerItem
+from PySide6.QtCore import Signal
+from PySide6.QtGui import QMouseEvent
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QHBoxLayout
 from models.Song import Song
 from utils.utils import Font
 
 
 class FavouriteListItemWidget(QWidget):
+    clicked = Signal(object)
+
     def __init__(self, song: Song, parent=None):
         super(FavouriteListItemWidget, self).__init__(parent)
+
+        self._song = song
 
         self.album_cover = QLabel("Album")
         self.title_label = QLabel(song.title)
@@ -26,3 +32,5 @@ class FavouriteListItemWidget(QWidget):
         self.container_layout.setSpacing(16)
         self.setLayout(self.container_layout)
 
+    def mousePressEvent(self, event: QMouseEvent) -> None:
+        self.clicked.emit(self._song)
