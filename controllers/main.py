@@ -1,4 +1,5 @@
 from controllers.HomeController import HomeController
+from controllers.FavouriteController import FavouriteController
 from view_models.main import ViewModel
 from views.main import View
 from services.main import Service
@@ -14,6 +15,7 @@ class Controller:
         self.service = service
 
         self.home = HomeController(self.view_model, self.view, self.service)
+        self.favourite = FavouriteController(self.view_model, self.view, self.service)
 
     def start(self):
         self.view.start()

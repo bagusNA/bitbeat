@@ -66,5 +66,5 @@ class HomeController(QObject):
         if not current_song:
             return
 
-        current_song.toggle_favourite()
+        self._service.library.toggle_song_favourite(current_song)
         self.view_model.song_favourite_changed.emit(current_song.is_favourite)

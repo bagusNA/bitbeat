@@ -14,7 +14,8 @@ class Song(Model):
     channel_url = TextField()
     upload_date = TextField()
     is_favourite = BooleanField(default=False)
-    last_played_at = TimestampField()
+    favourited_at = TimestampField(null=True)
+    last_played_at = TimestampField(null=True)
 
     def load(self, song_info: dict) -> None:
         self.id = song_info.get('id')
@@ -32,6 +33,8 @@ class Song(Model):
 
     def set_favourite(self, value: bool):
         self.is_favourite = value
+        self.favourited_at = datetime.now().timestamp() if self.is_favourite else None
+
         self.save()
 
     def toggle_favourite(self):

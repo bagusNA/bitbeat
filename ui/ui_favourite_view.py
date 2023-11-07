@@ -15,8 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
-    QSizePolicy, QSpacerItem, QWidget)
+from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
+    QLabel, QScrollArea, QSizePolicy, QSpacerItem,
+    QVBoxLayout, QWidget)
 
 class Ui_favourite_view(object):
     def setupUi(self, favourite_view):
@@ -25,6 +26,38 @@ class Ui_favourite_view(object):
         favourite_view.resize(594, 347)
         self.gridLayout = QGridLayout(favourite_view)
         self.gridLayout.setObjectName(u"gridLayout")
+        self.scrollArea = QScrollArea(favourite_view)
+        self.scrollArea.setObjectName(u"scrollArea")
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.scrollArea.sizePolicy().hasHeightForWidth())
+        self.scrollArea.setSizePolicy(sizePolicy)
+        self.scrollArea.setFrameShape(QFrame.NoFrame)
+        self.scrollArea.setFrameShadow(QFrame.Plain)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 582, 261))
+        self.gridLayout_2 = QGridLayout(self.scrollAreaWidgetContents)
+        self.gridLayout_2.setSpacing(0)
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.favourite_list = QVBoxLayout()
+        self.favourite_list.setObjectName(u"favourite_list")
+        self.favourite_list.setContentsMargins(-1, -1, -1, 0)
+
+        self.gridLayout_2.addLayout(self.favourite_list, 0, 0, 1, 1)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer, 1, 0, 1, 1)
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        self.gridLayout.addWidget(self.scrollArea, 1, 0, 1, 1)
+
         self.horizontalLayout_5 = QHBoxLayout()
         self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
         self.horizontalLayout_5.setContentsMargins(-1, -1, -1, 24)
@@ -38,10 +71,6 @@ class Ui_favourite_view(object):
 
 
         self.gridLayout.addLayout(self.horizontalLayout_5, 0, 0, 1, 1)
-
-        self.verticalSpacer_2 = QSpacerItem(20, 258, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.gridLayout.addItem(self.verticalSpacer_2, 1, 0, 1, 1)
 
 
         self.retranslateUi(favourite_view)

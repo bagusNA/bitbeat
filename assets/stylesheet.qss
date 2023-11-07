@@ -20,7 +20,8 @@ QPushButton:pressed {
 }
 
 QScrollArea,
-QScrollArea > QWidget > QWidget {
+QScrollArea > QWidget > QWidget,
+QListView {
     background: transparent;
 }
 
