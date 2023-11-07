@@ -1,13 +1,10 @@
-from urllib.request import urlopen
-from PySide6.QtCore import Slot, Qt
+from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QMainWindow
-from PySide6.QtGui import QPixmap
 
 from ui.ui_mainwindow import Ui_MainWindow
 from models.Song import Song
 from utils.utils import seconds_to_minutes, remove_all_widgets
-
-from widgets.QueueListWidget import QueueListWidget
+from widgets.QueueListItem import QueueListItem
 
 
 class MainLayout(QMainWindow):
@@ -137,6 +134,6 @@ class MainLayout(QMainWindow):
         remove_all_widgets(container)
 
         for index, song in enumerate(queue):
-            btn = QueueListWidget(text=song.title)
+            btn = QueueListItem(text=song.title)
             btn.clicked.connect(lambda *args, idx=index: self._controller.on_play_on_index(idx))
             container.addWidget(btn)

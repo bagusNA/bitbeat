@@ -6,16 +6,19 @@ QMainWindow {
     background-color: '#24273a';
 }
 
-QPushButton {
+QPushButton,
+FavouriteListItem {
     border: none;
     border-radius: 8px;
 }
 
-QPushButton:hover {
+QPushButton:hover,
+FavouriteListItem:hover {
     background-color: '#363a4f';
 }
 
-QPushButton:pressed {
+QPushButton:pressed,
+FavouriteListItem[pressed="true"] {
     background-color: '#494d64';
 }
 

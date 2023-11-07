@@ -2,7 +2,7 @@ from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QWidget
 
 from ui.ui_favourite_view import Ui_favourite_view as Ui
-from widgets.FavouriteListItemWidget import FavouriteListItemWidget
+from widgets.FavouriteListItem import FavouriteListItem
 from models.Song import Song
 
 
@@ -30,7 +30,7 @@ class FavouriteView(QWidget):
 
     def add_list_item(self, song: Song, index: int = 0) -> None:
         img = self._controller.service.cacher.image_from_song(song)
-        song_item = FavouriteListItemWidget(song, img)
+        song_item = FavouriteListItem(song, img)
         self.ui.favourite_list.insertWidget(index, song_item)
 
         song_item.clicked.connect(self._controller.on_song_item_clicked)

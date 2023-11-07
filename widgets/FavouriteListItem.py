@@ -1,15 +1,15 @@
 from PySide6.QtCore import Signal, Qt
-from PySide6.QtGui import QMouseEvent, QPixmap
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QHBoxLayout
+from PySide6.QtGui import QMouseEvent, QPixmap, QPaintEvent, QPainter
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QHBoxLayout, QStyleOption, QStyle
 from models.Song import Song
 from utils.utils import Font
 
 
-class FavouriteListItemWidget(QWidget):
+class FavouriteListItem(QWidget):
     clicked = Signal(object)
 
     def __init__(self, song: Song, img: QPixmap, parent=None):
-        super(FavouriteListItemWidget, self).__init__(parent)
+        super(FavouriteListItem, self).__init__(parent)
 
         self._song = song
 
@@ -36,4 +36,22 @@ class FavouriteListItemWidget(QWidget):
         self.setLayout(self.container_layout)
 
     def mousePressEvent(self, event: QMouseEvent) -> None:
+        self.setProperty("pressed", True)
+        self.style().polish(self)
+        self.style().unpolish(self)
+
+    def mouseReleaseEvent(self, event: QMouseEvent) -> None:
+        self.setProperty("pressed", False)
+        self.style().polish(self)
+        self.style().unpolish(self)
+
         self.clicked.emit(self._song)
+
+    def paintEvent(self, event: QPaintEvent) -> None:
+        super(FavouriteListItem, self).paintEvent(event)
+
+        opt = QStyleOption()
+        opt.initFrom(self)
+
+        painter = QPainter(self)
+        self.style().drawPrimitive(QStyle.PrimitiveElement.PE_Widget, opt, painter, self)
