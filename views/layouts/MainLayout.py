@@ -91,8 +91,9 @@ class MainLayout(QMainWindow):
     def on_queue_change(self, songs: list[Song]) -> None:
         length_time = sum(song.duration for song in songs)
         minutes, seconds = seconds_to_minutes(length_time, formatted=False)
+        total_song = len(songs)
 
-        self.ui.queue_length_info_label.setText(f"{len(songs)} songs, {minutes} min {seconds} sec")
+        self.ui.queue_length_info_label.setText(f"{total_song} song{'s' if total_song > 1 else ''}, {minutes} min {seconds} sec")
 
         self.build_queue(songs)
 
