@@ -1,6 +1,7 @@
 from datetime import datetime
 from peewee import *
 
+from services.CacherService import CacherService
 from utils.utils import coalesce, seconds_to_minutes
 from .main import Model
 
@@ -43,3 +44,7 @@ class Song(Model):
     def update_last_played(self):
         self.last_played_at = datetime.now().timestamp()
         self.save()
+
+    @property
+    def image_path(self):
+        return CacherService.image_from_song(self)

@@ -44,27 +44,28 @@ class Ui_MainWindow(object):
         self.gridLayout_3.setHorizontalSpacing(24)
         self.gridLayout_3.setVerticalSpacing(0)
         self.gridLayout_3.setContentsMargins(-1, -1, -1, 0)
-        self.gridLayout_5 = QGridLayout()
-        self.gridLayout_5.setObjectName(u"gridLayout_5")
-        self.gridLayout_5.setHorizontalSpacing(12)
-        self.album_cover = QLabel(self.widget_3)
-        self.album_cover.setObjectName(u"album_cover")
+        self.song_info = QHBoxLayout()
+        self.song_info.setSpacing(24)
+        self.song_info.setObjectName(u"song_info")
+        self.song_info.setContentsMargins(0, -1, 0, -1)
+        self.placeholder_album_cover = QLabel(self.widget_3)
+        self.placeholder_album_cover.setObjectName(u"placeholder_album_cover")
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.album_cover.sizePolicy().hasHeightForWidth())
-        self.album_cover.setSizePolicy(sizePolicy)
-        self.album_cover.setMinimumSize(QSize(64, 64))
-        self.album_cover.setMaximumSize(QSize(64, 64))
-        self.album_cover.setScaledContents(False)
-        self.album_cover.setAlignment(Qt.AlignCenter)
+        sizePolicy.setHeightForWidth(self.placeholder_album_cover.sizePolicy().hasHeightForWidth())
+        self.placeholder_album_cover.setSizePolicy(sizePolicy)
+        self.placeholder_album_cover.setMinimumSize(QSize(64, 64))
+        self.placeholder_album_cover.setMaximumSize(QSize(64, 64))
+        self.placeholder_album_cover.setScaledContents(False)
+        self.placeholder_album_cover.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout_5.addWidget(self.album_cover, 0, 0, 2, 1)
+        self.song_info.addWidget(self.placeholder_album_cover)
 
-        self.verticalLayout_5 = QVBoxLayout()
-        self.verticalLayout_5.setSpacing(0)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.verticalLayout_5.setContentsMargins(0, -1, -1, -1)
+        self.song_info_labels = QVBoxLayout()
+        self.song_info_labels.setSpacing(0)
+        self.song_info_labels.setObjectName(u"song_info_labels")
+        self.song_info_labels.setContentsMargins(0, -1, -1, -1)
         self.song_title_label = QLabel(self.widget_3)
         self.song_title_label.setObjectName(u"song_title_label")
         self.song_title_label.setMinimumSize(QSize(0, 0))
@@ -75,7 +76,7 @@ class Ui_MainWindow(object):
         self.song_title_label.setFont(font)
         self.song_title_label.setAlignment(Qt.AlignBottom|Qt.AlignLeading|Qt.AlignLeft)
 
-        self.verticalLayout_5.addWidget(self.song_title_label)
+        self.song_info_labels.addWidget(self.song_title_label)
 
         self.song_artist_label = QLabel(self.widget_3)
         self.song_artist_label.setObjectName(u"song_artist_label")
@@ -85,65 +86,13 @@ class Ui_MainWindow(object):
         self.song_artist_label.setFont(font1)
         self.song_artist_label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
 
-        self.verticalLayout_5.addWidget(self.song_artist_label)
+        self.song_info_labels.addWidget(self.song_artist_label)
 
 
-        self.gridLayout_5.addLayout(self.verticalLayout_5, 0, 1, 2, 1)
+        self.song_info.addLayout(self.song_info_labels)
 
 
-        self.gridLayout_3.addLayout(self.gridLayout_5, 0, 0, 1, 1)
-
-        self.horizontalLayout = QHBoxLayout()
-        self.horizontalLayout.setSpacing(0)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, -1, -1, -1)
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer)
-
-        self.btn_lyrics = QPushButton(self.widget_3)
-        self.btn_lyrics.setObjectName(u"btn_lyrics")
-        self.btn_lyrics.setMinimumSize(QSize(48, 32))
-        self.btn_lyrics.setMaximumSize(QSize(48, 32))
-        icon1 = QIcon()
-        icon1.addFile(u":/icons/icons/playlist.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_lyrics.setIcon(icon1)
-
-        self.horizontalLayout.addWidget(self.btn_lyrics)
-
-        self.btn_volume = QPushButton(self.widget_3)
-        self.btn_volume.setObjectName(u"btn_volume")
-        self.btn_volume.setMinimumSize(QSize(48, 32))
-        self.btn_volume.setMaximumSize(QSize(48, 32))
-        icon2 = QIcon()
-        icon2.addFile(u":/icons/icons/volume-up-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_volume.setIcon(icon2)
-
-        self.horizontalLayout.addWidget(self.btn_volume)
-
-        self.btn_volume_muted = QPushButton(self.widget_3)
-        self.btn_volume_muted.setObjectName(u"btn_volume_muted")
-        self.btn_volume_muted.setMinimumSize(QSize(48, 32))
-        self.btn_volume_muted.setMaximumSize(QSize(48, 32))
-        icon3 = QIcon()
-        icon3.addFile(u":/icons/icons/volume-off-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_volume_muted.setIcon(icon3)
-
-        self.horizontalLayout.addWidget(self.btn_volume_muted)
-
-        self.volume_slider = QSlider(self.widget_3)
-        self.volume_slider.setObjectName(u"volume_slider")
-        self.volume_slider.setEnabled(True)
-        self.volume_slider.setMinimumSize(QSize(96, 24))
-        self.volume_slider.setMaximumSize(QSize(96, 24))
-        self.volume_slider.setMaximum(100)
-        self.volume_slider.setValue(100)
-        self.volume_slider.setOrientation(Qt.Horizontal)
-
-        self.horizontalLayout.addWidget(self.volume_slider)
-
-
-        self.gridLayout_3.addLayout(self.horizontalLayout, 0, 2, 1, 1)
+        self.gridLayout_3.addLayout(self.song_info, 0, 0, 1, 1)
 
         self.gridLayout_6 = QGridLayout()
         self.gridLayout_6.setObjectName(u"gridLayout_6")
@@ -157,9 +106,9 @@ class Ui_MainWindow(object):
         self.btn_shuffle.setMinimumSize(QSize(48, 32))
         self.btn_shuffle.setMaximumSize(QSize(32, 32))
         self.btn_shuffle.setStyleSheet(u"")
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/icons/playlist-shuffle.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_shuffle.setIcon(icon4)
+        icon1 = QIcon()
+        icon1.addFile(u":/icons/icons/playlist-shuffle.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_shuffle.setIcon(icon1)
 
         self.horizontalLayout_2.addWidget(self.btn_shuffle)
 
@@ -167,9 +116,9 @@ class Ui_MainWindow(object):
         self.btn_previous.setObjectName(u"btn_previous")
         self.btn_previous.setMinimumSize(QSize(48, 32))
         self.btn_previous.setMaximumSize(QSize(32, 32))
-        icon5 = QIcon()
-        icon5.addFile(u":/icons/icons/player-start-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_previous.setIcon(icon5)
+        icon2 = QIcon()
+        icon2.addFile(u":/icons/icons/player-start-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_previous.setIcon(icon2)
 
         self.horizontalLayout_2.addWidget(self.btn_previous)
 
@@ -177,9 +126,9 @@ class Ui_MainWindow(object):
         self.btn_play.setObjectName(u"btn_play")
         self.btn_play.setMinimumSize(QSize(48, 32))
         self.btn_play.setMaximumSize(QSize(32, 32))
-        icon6 = QIcon()
-        icon6.addFile(u":/icons/icons/player-play-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_play.setIcon(icon6)
+        icon3 = QIcon()
+        icon3.addFile(u":/icons/icons/player-play-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_play.setIcon(icon3)
 
         self.horizontalLayout_2.addWidget(self.btn_play)
 
@@ -188,9 +137,9 @@ class Ui_MainWindow(object):
         self.btn_pause.setEnabled(True)
         self.btn_pause.setMinimumSize(QSize(48, 32))
         self.btn_pause.setMaximumSize(QSize(32, 32))
-        icon7 = QIcon()
-        icon7.addFile(u":/icons/icons/player-pause-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_pause.setIcon(icon7)
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/icons/player-pause-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_pause.setIcon(icon4)
 
         self.horizontalLayout_2.addWidget(self.btn_pause)
 
@@ -198,9 +147,9 @@ class Ui_MainWindow(object):
         self.btn_next.setObjectName(u"btn_next")
         self.btn_next.setMinimumSize(QSize(48, 32))
         self.btn_next.setMaximumSize(QSize(32, 32))
-        icon8 = QIcon()
-        icon8.addFile(u":/icons/icons/player-end-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_next.setIcon(icon8)
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/icons/player-end-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_next.setIcon(icon5)
 
         self.horizontalLayout_2.addWidget(self.btn_next)
 
@@ -208,9 +157,9 @@ class Ui_MainWindow(object):
         self.btn_favourited.setObjectName(u"btn_favourited")
         self.btn_favourited.setMinimumSize(QSize(48, 32))
         self.btn_favourited.setMaximumSize(QSize(48, 32))
-        icon9 = QIcon()
-        icon9.addFile(u":/icons/icons/heart-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_favourited.setIcon(icon9)
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/icons/heart-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_favourited.setIcon(icon6)
 
         self.horizontalLayout_2.addWidget(self.btn_favourited)
 
@@ -218,9 +167,9 @@ class Ui_MainWindow(object):
         self.btn_not_favourited.setObjectName(u"btn_not_favourited")
         self.btn_not_favourited.setMinimumSize(QSize(48, 32))
         self.btn_not_favourited.setMaximumSize(QSize(32, 32))
-        icon10 = QIcon()
-        icon10.addFile(u":/icons/icons/heart.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_not_favourited.setIcon(icon10)
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/icons/heart.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_not_favourited.setIcon(icon7)
 
         self.horizontalLayout_2.addWidget(self.btn_not_favourited)
 
@@ -248,9 +197,59 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addLayout(self.gridLayout_6, 0, 1, 1, 1)
 
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setSpacing(0)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, -1, -1, -1)
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer)
+
+        self.btn_lyrics = QPushButton(self.widget_3)
+        self.btn_lyrics.setObjectName(u"btn_lyrics")
+        self.btn_lyrics.setMinimumSize(QSize(48, 32))
+        self.btn_lyrics.setMaximumSize(QSize(48, 32))
+        icon8 = QIcon()
+        icon8.addFile(u":/icons/icons/playlist.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_lyrics.setIcon(icon8)
+
+        self.horizontalLayout.addWidget(self.btn_lyrics)
+
+        self.btn_volume = QPushButton(self.widget_3)
+        self.btn_volume.setObjectName(u"btn_volume")
+        self.btn_volume.setMinimumSize(QSize(48, 32))
+        self.btn_volume.setMaximumSize(QSize(48, 32))
+        icon9 = QIcon()
+        icon9.addFile(u":/icons/icons/volume-up-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_volume.setIcon(icon9)
+
+        self.horizontalLayout.addWidget(self.btn_volume)
+
+        self.btn_volume_muted = QPushButton(self.widget_3)
+        self.btn_volume_muted.setObjectName(u"btn_volume_muted")
+        self.btn_volume_muted.setMinimumSize(QSize(48, 32))
+        self.btn_volume_muted.setMaximumSize(QSize(48, 32))
+        icon10 = QIcon()
+        icon10.addFile(u":/icons/icons/volume-off-fill.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_volume_muted.setIcon(icon10)
+
+        self.horizontalLayout.addWidget(self.btn_volume_muted)
+
+        self.volume_slider = QSlider(self.widget_3)
+        self.volume_slider.setObjectName(u"volume_slider")
+        self.volume_slider.setEnabled(True)
+        self.volume_slider.setMinimumSize(QSize(96, 24))
+        self.volume_slider.setMaximumSize(QSize(96, 24))
+        self.volume_slider.setMaximum(100)
+        self.volume_slider.setValue(100)
+        self.volume_slider.setOrientation(Qt.Horizontal)
+
+        self.horizontalLayout.addWidget(self.volume_slider)
+
+
+        self.gridLayout_3.addLayout(self.horizontalLayout, 0, 2, 1, 1)
+
         self.gridLayout_3.setColumnStretch(0, 1)
-        self.gridLayout_3.setColumnStretch(1, 1)
-        self.gridLayout_3.setColumnStretch(2, 1)
 
         self.gridLayout_2.addWidget(self.widget_3, 1, 0, 1, 3)
 
@@ -318,7 +317,7 @@ class Ui_MainWindow(object):
         self.btn_favourite.setObjectName(u"btn_favourite")
         self.btn_favourite.setMinimumSize(QSize(64, 64))
         self.btn_favourite.setMaximumSize(QSize(64, 64))
-        self.btn_favourite.setIcon(icon10)
+        self.btn_favourite.setIcon(icon7)
         self.btn_favourite.setIconSize(QSize(24, 24))
 
         self.verticalLayout_2.addWidget(self.btn_favourite)
@@ -375,7 +374,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 202, 471))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 202, 472))
         self.gridLayout = QGridLayout(self.scrollAreaWidgetContents_2)
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
@@ -411,12 +410,9 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"BitBeat Music Player", None))
-        self.album_cover.setText(QCoreApplication.translate("MainWindow", u"Album", None))
+        self.placeholder_album_cover.setText(QCoreApplication.translate("MainWindow", u"Album", None))
         self.song_title_label.setText(QCoreApplication.translate("MainWindow", u"ReI", None))
         self.song_artist_label.setText(QCoreApplication.translate("MainWindow", u"The Oral Cigarettes", None))
-        self.btn_lyrics.setText("")
-        self.btn_volume.setText("")
-        self.btn_volume_muted.setText("")
         self.btn_shuffle.setText("")
         self.btn_previous.setText("")
         self.btn_play.setText("")
@@ -426,6 +422,9 @@ class Ui_MainWindow(object):
         self.btn_not_favourited.setText("")
         self.current_duration_label.setText(QCoreApplication.translate("MainWindow", u"-:-", None))
         self.total_duration_label.setText(QCoreApplication.translate("MainWindow", u"-:-", None))
+        self.btn_lyrics.setText("")
+        self.btn_volume.setText("")
+        self.btn_volume_muted.setText("")
         self.label.setText("")
         self.btn_home.setText("")
         self.btn_playlist.setText("")

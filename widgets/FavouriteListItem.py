@@ -9,12 +9,12 @@ from widgets.AlbumCover import AlbumCover
 class FavouriteListItem(QWidget):
     clicked = Signal(object)
 
-    def __init__(self, song: Song, img: QPixmap, parent=None):
+    def __init__(self, song: Song, parent=None):
         super(FavouriteListItem, self).__init__(parent)
 
         self._song = song
 
-        self.album_cover = AlbumCover(img)
+        self.album_cover = AlbumCover(song)
         self.title_label = QLabel(song.title)
         self.artist_label = QLabel(song.artist)
 

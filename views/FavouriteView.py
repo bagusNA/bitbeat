@@ -29,8 +29,7 @@ class FavouriteView(QWidget):
             self.add_list_item(song, index)
 
     def add_list_item(self, song: Song, index: int = 0) -> None:
-        img = self._controller.service.cacher.image_from_song(song)
-        song_item = FavouriteListItem(song, img)
+        song_item = FavouriteListItem(song)
         self.ui.favourite_list.insertWidget(index, song_item)
 
         song_item.clicked.connect(self._controller.on_song_item_clicked)

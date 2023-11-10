@@ -1,9 +1,11 @@
 from PySide6.QtCore import Slot
+from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QMainWindow
 
 from ui.ui_mainwindow import Ui_MainWindow
 from models.Song import Song
 from utils.utils import seconds_to_minutes, remove_all_widgets
+from widgets.AlbumCover import AlbumCover
 from widgets.QueueListItem import QueueListItem
 
 
@@ -17,6 +19,8 @@ class MainLayout(QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.album_cover = None
 
         self.views = {}
 
@@ -128,12 +132,15 @@ class MainLayout(QMainWindow):
         self.ui.btn_not_favourited.setVisible(not is_favourited)
 
     def set_album_cover(self, song: Song) -> None:
-        album_cover = self._base_controller.service.cacher.image_from_song(
-            song,
-            self.ui.album_cover.size(),
-        )
+        if self.album_cover is not None:
+            self.album_cover.set_song(song)
+        else:
+            self.album_cover = AlbumCover(song)
 
-        self.ui.album_cover.setPixmap(album_cover)
+            self.ui.placeholder_album_cover.deleteLater()
+            self.ui.song_info.insertWidget(0, self.album_cover)
+            self.ui.song_info.setSpacing(12)
+            self.ui.song_info.insertStretch(3)
 
     def build_queue(self, queue: list[Song]):
         container = self.ui.queue_list
