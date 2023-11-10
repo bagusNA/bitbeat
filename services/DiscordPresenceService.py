@@ -21,14 +21,26 @@ class DiscordPresenceService:
         self._CLIENT_ID = env['DISCORD_APP_ID']
 
         self.RPC = Presence(self._CLIENT_ID)
-        self.RPC.connect()
+        self.is_connected = False
+
+        try:
+            self.RPC.connect()
+            self.is_connected = True
+        except ConnectionRefusedError:
+            pass
 
         self.reset_status()
 
     def __del__(self):
+        if not self.is_connected:
+            return
+
         self.RPC.close()
 
     def reset_status(self):
+        if not self.is_connected:
+            return
+
         self.RPC.update(
             details="Deciding what song to vibe to",
             buttons=self.buttons
@@ -39,6 +51,9 @@ class DiscordPresenceService:
         self.update_song()
 
     def update_song(self):
+        if not self.is_connected:
+            return
+
         current_time = datetime.now()
         end_time = current_time + timedelta(seconds=self.current_song.duration)
 
