@@ -23,11 +23,11 @@ class DiscordPresenceService:
         self.RPC = Presence(self._CLIENT_ID)
         self.is_connected = False
 
-        try:
-            self.RPC.connect()
-            self.is_connected = True
-        except ConnectionRefusedError:
-            pass
+        # try:
+        #     self.RPC.connect()
+        #     self.is_connected = True
+        # except ConnectionRefusedError:
+        #     pass
 
         self.reset_status()
 

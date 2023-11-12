@@ -6,8 +6,9 @@ from models.Song import Song
 
 
 class AlbumCover(QLabel):
-    SIZE_LARGE = 96
     SIZE_NORMAL = 64
+    SIZE_LARGE = 96
+    SIZE_EXTRA_LARGE = 124
 
     def __init__(self, song: Song, size=SIZE_NORMAL, radius: int = 8):
         super(AlbumCover, self).__init__()

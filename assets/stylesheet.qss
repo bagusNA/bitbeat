@@ -18,18 +18,21 @@ QScrollArea > QWidget > QScrollBar {
 }
 
 QPushButton,
-FavouriteListItem {
+FavouriteListItem,
+SongCard {
     border: none;
     border-radius: 8px;
 }
 
 QPushButton:hover,
-FavouriteListItem:hover {
+FavouriteListItem:hover,
+SongCard:hover {
     background-color: '#363a4f';
 }
 
 QPushButton:pressed,
-FavouriteListItem[pressed="true"] {
+FavouriteListItem[pressed="true"],
+SongCard[pressed="true"] {
     background-color: '#494d64';
 }
 

@@ -16,8 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
-    QLineEdit, QPushButton, QSizePolicy, QSpacerItem,
-    QVBoxLayout, QWidget)
+    QLineEdit, QPushButton, QScrollArea, QSizePolicy,
+    QSpacerItem, QVBoxLayout, QWidget)
 import assets_rc
 
 class Ui_home_view(object):
@@ -27,6 +27,29 @@ class Ui_home_view(object):
         home_view.resize(592, 532)
         self.gridLayout = QGridLayout(home_view)
         self.gridLayout.setObjectName(u"gridLayout")
+        self.scrollArea = QScrollArea(home_view)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 570, 436))
+        self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_2.setSpacing(0)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.view_slot = QVBoxLayout()
+        self.view_slot.setObjectName(u"view_slot")
+
+        self.verticalLayout_2.addLayout(self.view_slot)
+
+        self.verticalSpacer = QSpacerItem(20, 431, QSizePolicy.Minimum, QSizePolicy.Expanding)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer)
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        self.gridLayout.addWidget(self.scrollArea, 1, 0, 1, 1)
+
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(-1, 0, -1, 24)
@@ -66,26 +89,6 @@ class Ui_home_view(object):
 
         self.gridLayout.addLayout(self.horizontalLayout_4, 0, 0, 1, 1)
 
-        self.verticalLayout_6 = QVBoxLayout()
-        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.verticalLayout_6.setContentsMargins(-1, 0, -1, -1)
-        self.pushButton_16 = QPushButton(home_view)
-        self.pushButton_16.setObjectName(u"pushButton_16")
-
-        self.verticalLayout_6.addWidget(self.pushButton_16)
-
-        self.pushButton_17 = QPushButton(home_view)
-        self.pushButton_17.setObjectName(u"pushButton_17")
-
-        self.verticalLayout_6.addWidget(self.pushButton_17)
-
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_6.addItem(self.verticalSpacer_3)
-
-
-        self.gridLayout.addLayout(self.verticalLayout_6, 1, 0, 1, 1)
-
 
         self.retranslateUi(home_view)
 
@@ -96,7 +99,5 @@ class Ui_home_view(object):
         home_view.setWindowTitle(QCoreApplication.translate("home_view", u"Form", None))
         self.page_title_label.setText(QCoreApplication.translate("home_view", u"Home", None))
         self.btn_search.setText(QCoreApplication.translate("home_view", u"Search", None))
-        self.pushButton_16.setText(QCoreApplication.translate("home_view", u"PushButton", None))
-        self.pushButton_17.setText(QCoreApplication.translate("home_view", u"PushButton", None))
     # retranslateUi
 

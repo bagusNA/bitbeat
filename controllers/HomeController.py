@@ -12,8 +12,8 @@ class HomeController(QObject):
         super().__init__()
 
         # self._view = view
-        self._service = service
-        self.player_service = self._service.audio_player
+        self.service = service
+        self.player_service = self.service.audio_player
         self.view_model = view_model.index
 
     @Slot(bool)
@@ -66,5 +66,5 @@ class HomeController(QObject):
         if not current_song:
             return
 
-        self._service.library.toggle_song_favourite(current_song)
+        self.service.library.toggle_song_favourite(current_song)
         self.view_model.song_favourite_changed.emit(current_song.is_favourite)
