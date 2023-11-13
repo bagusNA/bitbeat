@@ -23,7 +23,9 @@ class HomeView(QWidget):
 
         self.ui.input_search.textChanged.connect(self._controller.change_search_query)
         self.ui.btn_search.clicked.connect(self._controller.on_search)
+
         self._controller.service.library.favourited_songs_changed.connect(self.on_favourites_changed)
+        self._controller.service.library.latest_song_changed.connect(self.on_latest_song_changed)
 
         self.after_bind()
 
@@ -47,6 +49,10 @@ class HomeView(QWidget):
             self.latest_favourites_recommendation.add_song(changed_song)
         else:
             self.latest_favourites_recommendation.remove_song(changed_song)
+
+    @Slot(Song)
+    def on_latest_song_changed(self, changed_song: Song):
+        self.recently_played_recommendation.add_song(changed_song)
 
     @Slot(str)
     def on_search_query_changed(self, value: str) -> None:

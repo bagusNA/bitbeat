@@ -31,8 +31,16 @@ class RecommendationList(QWidget):
         self.container_layout.addWidget(self.song_container)
         self.setLayout(self.container_layout)
 
-    def add_song(self, song: Song, append: bool = True) -> None:
+    def add_song(self, song: Song, append: bool = True, unique: bool = True) -> None:
         index = 0 if append else self.song_container_layout.count() - 1
+
+        if unique:
+            try:
+                existing_index = self._songs.index(song)
+                if existing_index:
+                    self.remove_song_by_index(existing_index)
+            except ValueError:
+                pass
 
         self.song_container_layout.insertWidget(index, SongCard(song))
 
