@@ -3,6 +3,7 @@ from peewee import *
 
 from services.CacherService import CacherService
 from utils.utils import coalesce, seconds_to_minutes
+from .Playlist import Playlist
 from .main import Model
 
 
@@ -17,6 +18,8 @@ class Song(Model):
     is_favourite = BooleanField(default=False)
     favourited_at = TimestampField(null=True)
     last_played_at = TimestampField(null=True)
+
+    playlist = ManyToManyField(Playlist, backref='songs')
 
     def load(self, song_info: dict) -> None:
         self.id = song_info.get('id')
@@ -48,3 +51,6 @@ class Song(Model):
     @property
     def image_path(self):
         return CacherService.image_from_song(self)
+
+
+PlaylistSong = Song.playlist.get_through_model()

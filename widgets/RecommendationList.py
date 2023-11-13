@@ -9,6 +9,8 @@ class RecommendationList(QWidget):
     def __init__(self, title: str, songs: list[Song]):
         super(RecommendationList, self).__init__()
 
+        self._songs = []
+
         self.container_layout = QVBoxLayout(self)
         self.song_container = QWidget()
         self.song_container_layout = QHBoxLayout()
@@ -16,15 +18,34 @@ class RecommendationList(QWidget):
 
         Font.set_font_size(self.title, 15)
 
-        for song in songs:
-            self.song_container_layout.addWidget(SongCard(song))
-
         self.song_container_layout.setContentsMargins(0, 0, 0, 0)
         self.song_container_layout.setSpacing(0)
-        self.song_container_layout.addStretch(0)
+        self.song_container_layout.addStretch()
+
+        for song in songs:
+            self.add_song(song, append=False)
 
         self.song_container.setLayout(self.song_container_layout)
 
         self.container_layout.addWidget(self.title)
         self.container_layout.addWidget(self.song_container)
         self.setLayout(self.container_layout)
+
+    def add_song(self, song: Song, append: bool = True) -> None:
+        index = 0 if append else self.song_container_layout.count() - 1
+
+        self.song_container_layout.insertWidget(index, SongCard(song))
+
+        if append:
+            self._songs.insert(0, song)
+        else:
+            self._songs.append(song)
+
+    def remove_song(self, song: Song) -> None:
+        index = self._songs.index(song)
+        self.remove_song_by_index(index)
+
+    def remove_song_by_index(self, index: int) -> None:
+        song_item = self.song_container_layout.takeAt(index)
+        song_item.widget().deleteLater()
+        self._songs.pop(index)
