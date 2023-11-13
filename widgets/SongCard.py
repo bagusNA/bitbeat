@@ -1,10 +1,11 @@
 from PySide6.QtCore import Signal
 from PySide6.QtGui import QMouseEvent, QPaintEvent, QPainter
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QStyleOption, QStyle
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QStyleOption, QStyle
 
 from models.Song import Song
 from utils.utils import Font
 from widgets.AlbumCover import AlbumCover
+from widgets.MarqueeLabel import MarqueeLabel
 
 
 class SongCard(QWidget):
@@ -17,8 +18,11 @@ class SongCard(QWidget):
 
         self.container_layout = QVBoxLayout(self)
         self.album_cover = AlbumCover(self._song, size=AlbumCover.SIZE_EXTRA_LARGE)
-        self.song_title_label = QLabel(self._song.title)
-        self.song_artist_label = QLabel(self._song.artist)
+        self.song_title_label = MarqueeLabel(text=self._song.title, hover_parent=self)
+        self.song_artist_label = MarqueeLabel(text=self._song.artist, hover_parent=self)
+
+        self.song_title_label.setMaximumWidth(AlbumCover.SIZE_EXTRA_LARGE)
+        self.song_artist_label.setMaximumWidth(AlbumCover.SIZE_EXTRA_LARGE)
 
         Font.set_font_size(self.song_artist_label, 11)
         Font.set_font_size(self.song_artist_label, 7)

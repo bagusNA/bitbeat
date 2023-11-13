@@ -22,7 +22,7 @@ class RecommendationList(QWidget):
         Font.set_font_size(self.title, 15)
 
         self.song_container_layout.setContentsMargins(0, 0, 0, 0)
-        self.song_container_layout.setSpacing(0)
+        self.song_container_layout.setSpacing(8)
         self.song_container_layout.addStretch()
 
         for song in songs:

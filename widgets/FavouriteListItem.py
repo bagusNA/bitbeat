@@ -1,9 +1,10 @@
-from PySide6.QtCore import Signal, Qt
-from PySide6.QtGui import QMouseEvent, QPixmap, QPaintEvent, QPainter
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QHBoxLayout, QStyleOption, QStyle
+from PySide6.QtCore import Signal
+from PySide6.QtGui import QMouseEvent, QPaintEvent, QPainter
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QStyleOption, QStyle
 from models.Song import Song
 from utils.utils import Font
 from widgets.AlbumCover import AlbumCover
+from widgets.MarqueeLabel import MarqueeLabel
 
 
 class FavouriteListItem(QWidget):
@@ -15,8 +16,8 @@ class FavouriteListItem(QWidget):
         self._song = song
 
         self.album_cover = AlbumCover(song)
-        self.title_label = QLabel(song.title)
-        self.artist_label = QLabel(song.artist)
+        self.title_label = MarqueeLabel(text=song.title, hover_parent=self)
+        self.artist_label = MarqueeLabel(text=song.artist, hover_parent=self)
 
         Font.set_font_size(self.title_label, 11)
         Font.set_font_size(self.artist_label, 8)
