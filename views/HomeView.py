@@ -32,12 +32,14 @@ class HomeView(QWidget):
     def after_bind(self):
         self.recently_played_recommendation = RecommendationList(
             "Recently Played",
-            self._controller.service.library.get_recent_songs()
+            self._controller.service.library.get_recent_songs(limit=5),
+            self._controller.on_song_item_clicked,
         )
 
         self.latest_favourites_recommendation = RecommendationList(
             "Latest Favourites",
-            self._controller.service.library.get_favourited_songs(limit=4)
+            self._controller.service.library.get_favourited_songs(limit=5),
+            self._controller.on_song_item_clicked,
         )
 
         self.ui.view_slot.addWidget(self.recently_played_recommendation)

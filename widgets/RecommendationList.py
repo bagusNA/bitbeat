@@ -1,3 +1,5 @@
+import typing
+
 from PySide6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel
 
 from models.Song import Song
@@ -6,10 +8,11 @@ from widgets.SongCard import SongCard
 
 
 class RecommendationList(QWidget):
-    def __init__(self, title: str, songs: list[Song]):
+    def __init__(self, title: str, songs: list[Song], clicked_callback: typing.Callable = None):
         super(RecommendationList, self).__init__()
 
         self._songs = []
+        self._clicked_callback = clicked_callback
 
         self.container_layout = QVBoxLayout(self)
         self.song_container = QWidget()
@@ -37,12 +40,15 @@ class RecommendationList(QWidget):
         if unique:
             try:
                 existing_index = self._songs.index(song)
-                if existing_index:
-                    self.remove_song_by_index(existing_index)
+                self.remove_song_by_index(existing_index)
             except ValueError:
                 pass
 
-        self.song_container_layout.insertWidget(index, SongCard(song))
+        song_card = SongCard(song)
+        if self._clicked_callback is not None:
+            song_card.clicked.connect(self._clicked_callback)
+
+        self.song_container_layout.insertWidget(index, song_card)
 
         if append:
             self._songs.insert(0, song)
@@ -56,4 +62,5 @@ class RecommendationList(QWidget):
     def remove_song_by_index(self, index: int) -> None:
         song_item = self.song_container_layout.takeAt(index)
         song_item.widget().deleteLater()
+
         self._songs.pop(index)

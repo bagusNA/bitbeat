@@ -76,10 +76,6 @@ class MainLayout(QMainWindow):
         selected_index = list(self.views.keys()).index(view_name)
         self.set_view(selected_index)
 
-    @Slot(str)
-    def on_search_query_changed(self, value: str) -> None:
-        self.ui.input_search.setText(value)
-
     @Slot(Song)
     def on_song_change(self, song: Song) -> None:
         self.ui.song_title_label.setText(song.title)

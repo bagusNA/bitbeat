@@ -1,4 +1,6 @@
 from PySide6.QtCore import QObject, Slot
+
+from models.Song import Song
 from view_models.main import ViewModel
 from views.main import View
 from services.main import Service
@@ -68,3 +70,7 @@ class HomeController(QObject):
 
         self.service.library.toggle_song_favourite(current_song)
         self.view_model.song_favourite_changed.emit(current_song.is_favourite)
+
+    @Slot(Song)
+    def on_song_item_clicked(self, song: Song):
+        self.service.audio_player.search_song(song.url)
