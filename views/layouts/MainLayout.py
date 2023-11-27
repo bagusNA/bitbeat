@@ -45,6 +45,7 @@ class MainLayout(QMainWindow):
         self.ui.btn_next.clicked.connect(self._controller.on_next)
         self.ui.btn_favourited.clicked.connect(self._controller.on_song_favourite_toggled)
         self.ui.btn_not_favourited.clicked.connect(self._controller.on_song_favourite_toggled)
+        self.ui.btn_lyrics.clicked.connect(self._base_controller.switch_to_lyrics)
         self.ui.btn_volume.clicked.connect(self._controller.on_volume_toggle_mute)
         self.ui.btn_volume_muted.clicked.connect(self._controller.on_volume_toggle_mute)
         self.ui.playback_slider.valueChanged.connect(self._controller.on_playback_scrobble)
@@ -76,6 +77,12 @@ class MainLayout(QMainWindow):
         selected_index = list(self.views.keys()).index(view_name)
         self.set_view(selected_index)
 
+    def show_queue(self, show: bool = True):
+        if show:
+            self.ui.queue_widget.show()
+        else:
+            self.ui.queue_widget.hide()
+
     @Slot(Song)
     def on_song_change(self, song: Song) -> None:
         self.ui.song_title_label.setText(song.title)
@@ -93,7 +100,8 @@ class MainLayout(QMainWindow):
         minutes, seconds = seconds_to_minutes(length_time, formatted=False)
         total_song = len(songs)
 
-        self.ui.queue_length_info_label.setText(f"{total_song} song{'s' if total_song > 1 else ''}, {minutes} min {seconds} sec")
+        self.ui.queue_length_info_label.setText(
+            f"{total_song} song{'s' if total_song > 1 else ''}, {minutes} min {seconds} sec")
 
         self.build_queue(songs)
 
