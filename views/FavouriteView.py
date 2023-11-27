@@ -22,6 +22,12 @@ class FavouriteView(QWidget):
 
         self.build_list()
 
+    def on_show(self):
+        pass
+
+    def on_leave(self):
+        pass
+
     def build_list(self):
         self.song_list = self._controller.service.library.get_favourited_songs()
 

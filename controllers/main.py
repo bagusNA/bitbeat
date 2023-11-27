@@ -23,11 +23,6 @@ class Controller:
         self.view.start()
 
     def switch_view(self, name):
-        if name == 'lyrics':
-            self.view.layout.show_queue(False)
-        else:
-            self.view.layout.show_queue()
-
         return self.view.switch(name)
 
     def switch_to_home(self):

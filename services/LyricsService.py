@@ -1,25 +1,52 @@
-from PySide6.QtCore import QObject
+from PySide6.QtCore import QObject, QThread, Signal, Slot
 
 from dotenv import dotenv_values
 from lyricsgenius import Genius
 from lyricsgenius.types import Song
 
 
+class LyricsWorker(QThread):
+    lyricsFetched = Signal(object)
+
+    def __init__(self, service):
+        super(LyricsWorker, self).__init__()
+
+        env = dotenv_values('.env')
+        self.genius = Genius(env['GENIUS_ACCESS_TOKEN'])
+        self.service = service
+
+    def run(self) -> None:
+        song: Song | None = self.genius.search_song(self.service._title)
+
+        if song is None:
+            self.lyricsFetched.emit(None)
+        else:
+            self.lyricsFetched.emit(song.lyrics)
+
+
 class LyricsService(QObject):
+    lyricsFetched = Signal(object)
+
     def __init__(self, service):
         super(LyricsService, self).__init__()
 
         self._service = service
+        self._worker = LyricsWorker(self)
+        self._title = ''
 
-        env = dotenv_values('.env')
-        self.genius = Genius(env['GENIUS_ACCESS_TOKEN'])
-
-    def search_by_title(self, title: str):
-        song: Song = self.genius.search_song(title)
-
-        return song.lyrics
+        self._worker.lyricsFetched.connect(self.on_lyrics_fetched)
 
     def search_current_song(self):
-        song = self._service.audio_player.current_song
+        self._title = self._service.audio_player.current_song.title
+        self._worker.start()
 
-        return self.search_by_title(song.title)
+    @Slot(object)
+    def on_lyrics_fetched(self, lyrics: str | None):
+        if lyrics is None:
+            self.lyricsFetched.emit(None)
+            return
+
+        lyric_lines = lyrics.splitlines()
+        lyric_lines.pop(0)  # Removes unnecessary contributor line
+
+        self.lyricsFetched.emit(lyric_lines)

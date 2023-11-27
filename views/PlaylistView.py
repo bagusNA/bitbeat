@@ -14,3 +14,9 @@ class PlaylistView(QWidget):
 
     def bind(self, controller):
         pass
+
+    def on_show(self):
+        pass
+
+    def on_leave(self):
+        pass

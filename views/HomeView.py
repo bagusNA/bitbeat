@@ -45,6 +45,12 @@ class HomeView(QWidget):
         self.ui.view_slot.addWidget(self.recently_played_recommendation)
         self.ui.view_slot.addWidget(self.latest_favourites_recommendation)
 
+    def on_show(self):
+        pass
+
+    def on_leave(self):
+        pass
+
     @Slot(Song)
     def on_favourites_changed(self, changed_song: Song):
         if changed_song.is_favourite:
