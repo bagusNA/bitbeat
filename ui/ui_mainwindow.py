@@ -18,7 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
     QLabel, QMainWindow, QPushButton, QScrollArea,
     QSizePolicy, QSlider, QSpacerItem, QStackedWidget,
-    QStatusBar, QVBoxLayout, QWidget)
+    QVBoxLayout, QWidget)
 import assets_rc
 import assets_rc
 
@@ -33,10 +33,15 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet(u"")
         self.container = QWidget(MainWindow)
         self.container.setObjectName(u"container")
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.container.sizePolicy().hasHeightForWidth())
+        self.container.setSizePolicy(sizePolicy)
         self.gridLayout_2 = QGridLayout(self.container)
         self.gridLayout_2.setSpacing(0)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_2.setContentsMargins(7, 0, 4, 12)
         self.widget_3 = QWidget(self.container)
         self.widget_3.setObjectName(u"widget_3")
         self.gridLayout_3 = QGridLayout(self.widget_3)
@@ -44,56 +49,6 @@ class Ui_MainWindow(object):
         self.gridLayout_3.setHorizontalSpacing(24)
         self.gridLayout_3.setVerticalSpacing(0)
         self.gridLayout_3.setContentsMargins(-1, -1, -1, 0)
-        self.song_info = QHBoxLayout()
-        self.song_info.setSpacing(24)
-        self.song_info.setObjectName(u"song_info")
-        self.song_info.setContentsMargins(0, -1, 0, -1)
-        self.placeholder_album_cover = QLabel(self.widget_3)
-        self.placeholder_album_cover.setObjectName(u"placeholder_album_cover")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.placeholder_album_cover.sizePolicy().hasHeightForWidth())
-        self.placeholder_album_cover.setSizePolicy(sizePolicy)
-        self.placeholder_album_cover.setMinimumSize(QSize(64, 64))
-        self.placeholder_album_cover.setMaximumSize(QSize(64, 64))
-        self.placeholder_album_cover.setScaledContents(False)
-        self.placeholder_album_cover.setAlignment(Qt.AlignCenter)
-
-        self.song_info.addWidget(self.placeholder_album_cover)
-
-        self.song_info_labels = QVBoxLayout()
-        self.song_info_labels.setSpacing(0)
-        self.song_info_labels.setObjectName(u"song_info_labels")
-        self.song_info_labels.setContentsMargins(0, -1, -1, -1)
-        self.song_title_label = QLabel(self.widget_3)
-        self.song_title_label.setObjectName(u"song_title_label")
-        self.song_title_label.setMinimumSize(QSize(0, 0))
-        self.song_title_label.setMaximumSize(QSize(300, 16777215))
-        font = QFont()
-        font.setPointSize(10)
-        font.setBold(True)
-        self.song_title_label.setFont(font)
-        self.song_title_label.setAlignment(Qt.AlignBottom|Qt.AlignLeading|Qt.AlignLeft)
-
-        self.song_info_labels.addWidget(self.song_title_label)
-
-        self.song_artist_label = QLabel(self.widget_3)
-        self.song_artist_label.setObjectName(u"song_artist_label")
-        self.song_artist_label.setMaximumSize(QSize(300, 16777215))
-        font1 = QFont()
-        font1.setPointSize(8)
-        self.song_artist_label.setFont(font1)
-        self.song_artist_label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
-
-        self.song_info_labels.addWidget(self.song_artist_label)
-
-
-        self.song_info.addLayout(self.song_info_labels)
-
-
-        self.gridLayout_3.addLayout(self.song_info, 0, 0, 1, 1)
-
         self.gridLayout_6 = QGridLayout()
         self.gridLayout_6.setObjectName(u"gridLayout_6")
         self.gridLayout_6.setHorizontalSpacing(12)
@@ -194,17 +149,70 @@ class Ui_MainWindow(object):
 
         self.gridLayout_6.addWidget(self.total_duration_label, 2, 4, 1, 1)
 
+        self.gridLayout_6.setRowStretch(1, 1)
 
-        self.gridLayout_3.addLayout(self.gridLayout_6, 0, 1, 1, 1)
+        self.gridLayout_3.addLayout(self.gridLayout_6, 0, 2, 1, 1)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_3.addItem(self.horizontalSpacer, 0, 1, 1, 1)
+
+        self.song_info = QHBoxLayout()
+        self.song_info.setSpacing(24)
+        self.song_info.setObjectName(u"song_info")
+        self.song_info.setContentsMargins(0, -1, 0, -1)
+        self.placeholder_album_cover = QLabel(self.widget_3)
+        self.placeholder_album_cover.setObjectName(u"placeholder_album_cover")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.placeholder_album_cover.sizePolicy().hasHeightForWidth())
+        self.placeholder_album_cover.setSizePolicy(sizePolicy1)
+        self.placeholder_album_cover.setMinimumSize(QSize(64, 64))
+        self.placeholder_album_cover.setMaximumSize(QSize(64, 64))
+        self.placeholder_album_cover.setAutoFillBackground(False)
+        self.placeholder_album_cover.setPixmap(QPixmap(u":/icons/icons/music-album-bold.svg"))
+        self.placeholder_album_cover.setScaledContents(False)
+        self.placeholder_album_cover.setAlignment(Qt.AlignCenter)
+
+        self.song_info.addWidget(self.placeholder_album_cover)
+
+        self.song_info_labels = QVBoxLayout()
+        self.song_info_labels.setSpacing(0)
+        self.song_info_labels.setObjectName(u"song_info_labels")
+        self.song_info_labels.setContentsMargins(0, -1, -1, -1)
+        self.song_title_label = QLabel(self.widget_3)
+        self.song_title_label.setObjectName(u"song_title_label")
+        self.song_title_label.setMinimumSize(QSize(0, 0))
+        self.song_title_label.setMaximumSize(QSize(300, 16777215))
+        font = QFont()
+        font.setPointSize(10)
+        font.setBold(True)
+        self.song_title_label.setFont(font)
+        self.song_title_label.setAlignment(Qt.AlignBottom|Qt.AlignLeading|Qt.AlignLeft)
+
+        self.song_info_labels.addWidget(self.song_title_label)
+
+        self.song_artist_label = QLabel(self.widget_3)
+        self.song_artist_label.setObjectName(u"song_artist_label")
+        self.song_artist_label.setMaximumSize(QSize(300, 16777215))
+        font1 = QFont()
+        font1.setPointSize(8)
+        self.song_artist_label.setFont(font1)
+        self.song_artist_label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+
+        self.song_info_labels.addWidget(self.song_artist_label)
+
+
+        self.song_info.addLayout(self.song_info_labels)
+
+
+        self.gridLayout_3.addLayout(self.song_info, 0, 0, 1, 1)
 
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, -1, -1, -1)
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer)
-
         self.btn_lyrics = QPushButton(self.widget_3)
         self.btn_lyrics.setObjectName(u"btn_lyrics")
         self.btn_lyrics.setMinimumSize(QSize(48, 32))
@@ -247,9 +255,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.volume_slider)
 
 
-        self.gridLayout_3.addLayout(self.horizontalLayout, 0, 2, 1, 1)
+        self.gridLayout_3.addLayout(self.horizontalLayout, 0, 4, 1, 1)
 
-        self.gridLayout_3.setColumnStretch(0, 1)
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.gridLayout_3.addItem(self.horizontalSpacer_2, 0, 3, 1, 1)
+
 
         self.gridLayout_2.addWidget(self.widget_3, 1, 0, 1, 3)
 
@@ -385,7 +396,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents_2 = QWidget()
         self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
-        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 202, 472))
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 202, 482))
         self.gridLayout = QGridLayout(self.scrollAreaWidgetContents_2)
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
@@ -408,11 +419,9 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addWidget(self.queue_widget, 0, 2, 1, 1)
 
+        self.gridLayout_2.setRowStretch(0, 1)
         self.gridLayout_2.setColumnStretch(1, 1)
         MainWindow.setCentralWidget(self.container)
-        self.statusbar = QStatusBar(MainWindow)
-        self.statusbar.setObjectName(u"statusbar")
-        MainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(MainWindow)
 
@@ -421,9 +430,6 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"BitBeat Music Player", None))
-        self.placeholder_album_cover.setText(QCoreApplication.translate("MainWindow", u"Album", None))
-        self.song_title_label.setText(QCoreApplication.translate("MainWindow", u"ReI", None))
-        self.song_artist_label.setText(QCoreApplication.translate("MainWindow", u"The Oral Cigarettes", None))
         self.btn_shuffle.setText("")
         self.btn_previous.setText("")
         self.btn_play.setText("")
@@ -433,6 +439,9 @@ class Ui_MainWindow(object):
         self.btn_not_favourited.setText("")
         self.current_duration_label.setText(QCoreApplication.translate("MainWindow", u"-:-", None))
         self.total_duration_label.setText(QCoreApplication.translate("MainWindow", u"-:-", None))
+        self.placeholder_album_cover.setText("")
+        self.song_title_label.setText("")
+        self.song_artist_label.setText("")
         self.btn_lyrics.setText("")
         self.btn_volume.setText("")
         self.btn_volume_muted.setText("")
