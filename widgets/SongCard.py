@@ -17,7 +17,7 @@ class SongCard(QWidget):
         self._song = song
 
         self.container_layout = QVBoxLayout(self)
-        self.album_cover = AlbumCover(self._song, size=AlbumCover.SIZE_EXTRA_LARGE)
+        self.album_cover = AlbumCover(self._song.image_path, size=AlbumCover.SIZE_EXTRA_LARGE)
         self.song_title_label = MarqueeLabel(text=self._song.title, hover_parent=self)
         self.song_artist_label = MarqueeLabel(text=self._song.artist, hover_parent=self)
 

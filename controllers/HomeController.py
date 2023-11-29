@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING
 from PySide6.QtCore import QObject, Slot
 
 from models.Song import Song
+from utils import utils
 from view_models.main import ViewModel
 from views.main import View
 from services.main import Service
@@ -28,7 +29,13 @@ class HomeController(QObject):
 
     @Slot(bool)
     def on_search(self):
-        self.player_service.search_song(self.view_model.search_query)
+        query = self.view_model.search_query
+
+        if not utils.is_youtube_url(query):
+            self._controller.switch_to_search()
+            self.player_service.search_song_query(query)
+        else:
+            self.player_service.search_song(query)
 
     @Slot(str)
     def change_search_query(self, value):

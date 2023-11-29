@@ -5,6 +5,7 @@ from utils.utils import coalesce
 
 
 class AudioPlayerService(QObject):
+    search_song_signal = Signal(str)
     fetch_song_signal = Signal(str)
     playback_status_changed = Signal(bool)
     current_song_changed = Signal(Song)
@@ -78,6 +79,7 @@ class AudioPlayerService(QObject):
         self._song_fetcher.moveToThread(self.thread)
 
         self.fetch_song_signal.connect(self._song_fetcher.fetch_song)
+        self.search_song_signal.connect(self._song_fetcher.search)
         self._song_fetcher.song_fetched.connect(self.add_song)
 
         self.thread.finished.connect(self.deleteLater)
@@ -127,6 +129,9 @@ class AudioPlayerService(QObject):
         self._playback_muted = value
         self._player.mute = value
         self.playback_muted_changed.emit(value)
+
+    def search_song_query(self, query: str) -> None:
+        self.search_song_signal.emit(query)
 
     def search_song(self, url: str) -> None:
         self.fetch_song_signal.emit(url)

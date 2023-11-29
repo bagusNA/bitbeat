@@ -2,6 +2,7 @@ from .HomeView import HomeView
 from .LyricsView import LyricsView
 from .PlaylistView import PlaylistView
 from .FavouriteView import FavouriteView
+from .SearchView import SearchView
 from .SettingView import SettingView
 from .layouts.MainLayout import MainLayout
 
@@ -17,6 +18,7 @@ class View:
             'favourite': FavouriteView(),
             'setting': SettingView(),
             'lyrics': LyricsView(),
+            'search': SearchView(),
         }
 
         self.layout.register_views(self.views)

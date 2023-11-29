@@ -10,7 +10,7 @@ class AlbumCover(QLabel):
     SIZE_LARGE = 96
     SIZE_EXTRA_LARGE = 124
 
-    def __init__(self, song: Song, size=SIZE_NORMAL, radius: int = 8):
+    def __init__(self, img_path: str | bytes, size=SIZE_NORMAL, radius: int = 8):
         super(AlbumCover, self).__init__()
 
         self.image = None
@@ -25,15 +25,19 @@ class AlbumCover(QLabel):
 
         self.painter = QPainter(self.rounded_pixmap)
 
-        self.set_song(song)
+        self.set_image(img_path)
 
         self.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
     def __del__(self):
         self.painter.end()
 
-    def set_song(self, song: Song):
-        self.image = QPixmap(song.image_path)
+    def set_image(self, img_path: str | bytes):
+        if type(img_path) is bytes:
+            self.image = QPixmap()
+            self.image.loadFromData(img_path)
+        else:
+            self.image = QPixmap(img_path)
 
         self.scaled_album_cover = self.image.scaled(
             QSize(self.size, self.size),

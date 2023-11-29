@@ -1,13 +1,16 @@
 import yt_dlp
+from youtube_search import YoutubeSearch
 from peewee import DoesNotExist
 from PySide6.QtCore import QObject, Signal
 
 from models.Playlist import Playlist
 from models.Song import Song
+from utils import utils
 
 
 class SongFetcherService(QObject):
     song_fetched = Signal(object)
+    search_result_fetched = Signal(object)
 
     def __init__(self, service, config=None):
         super().__init__()
@@ -70,6 +73,10 @@ class SongFetcherService(QObject):
             songs.append(song)
 
         self.song_fetched.emit(songs)
+
+    def search(self, query: str):
+        results = YoutubeSearch(query, max_results=10)
+        self.search_result_fetched.emit(results)
 
     # Utilities
     def is_format_audio_only(self, format: dict) -> bool:

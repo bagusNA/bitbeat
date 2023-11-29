@@ -1,23 +1,25 @@
+from urllib.request import urlopen
+
 from PySide6.QtCore import Signal
 from PySide6.QtGui import QMouseEvent, QPaintEvent, QPainter
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QStyleOption, QStyle
-from models.Song import Song
+
 from utils.utils import Font
 from widgets.AlbumCover import AlbumCover
 from widgets.MarqueeLabel import MarqueeLabel
 
 
-class FavouriteListItem(QWidget):
+class SearchListItem(QWidget):
     clicked = Signal(object)
 
-    def __init__(self, song: Song, parent=None):
-        super(FavouriteListItem, self).__init__(parent)
+    def __init__(self, video: dict, parent=None):
+        super(SearchListItem, self).__init__(parent)
 
-        self._song = song
+        self._img_data = urlopen(video['thumbnails'][0]).read()
 
-        self.album_cover = AlbumCover(song.image_path)
-        self.title_label = MarqueeLabel(text=song.title, hover_parent=self)
-        self.artist_label = MarqueeLabel(text=song.artist, hover_parent=self)
+        self.album_cover = AlbumCover(self._img_data)
+        self.title_label = MarqueeLabel(text=video['title'], hover_parent=self)
+        self.artist_label = MarqueeLabel(text=video['channel'], hover_parent=self)
 
         Font.set_font_size(self.title_label, 11)
         Font.set_font_size(self.artist_label, 8)
@@ -43,10 +45,10 @@ class FavouriteListItem(QWidget):
         self.style().polish(self)
         self.style().unpolish(self)
 
-        self.clicked.emit(self._song)
+        # self.clicked.emit(self._song)
 
     def paintEvent(self, event: QPaintEvent) -> None:
-        super(FavouriteListItem, self).paintEvent(event)
+        super(SearchListItem, self).paintEvent(event)
 
         opt = QStyleOption()
         opt.initFrom(self)

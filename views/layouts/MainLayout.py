@@ -137,9 +137,9 @@ class MainLayout(QMainWindow):
 
     def set_album_cover(self, song: Song) -> None:
         if self.album_cover is not None:
-            self.album_cover.set_song(song)
+            self.album_cover.set_image(song.image_path)
         else:
-            self.album_cover = AlbumCover(song)
+            self.album_cover = AlbumCover(song.image_path)
 
             self.ui.placeholder_album_cover.deleteLater()
             self.ui.song_info.insertWidget(0, self.album_cover)

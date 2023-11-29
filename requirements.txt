@@ -6,3 +6,4 @@ yt-dlp==2023.10.13
 pypresence==4.3.0
 python-dotenv=1.0.0
 peewee==3.17.0
+youtube-search==2.1.2

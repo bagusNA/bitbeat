@@ -1,6 +1,7 @@
 from controllers.HomeController import HomeController
 from controllers.FavouriteController import FavouriteController
 from controllers.LyricsController import LyricsController
+from controllers.SearchController import SearchController
 from view_models.main import ViewModel
 from views.main import View
 from services.main import Service
@@ -18,6 +19,7 @@ class Controller:
         self.home = HomeController(self, self.view_model, self.view, self.service)
         self.favourite = FavouriteController(self, self.view_model, self.view, self.service)
         self.lyrics = LyricsController(self, self.view_model, self.view, self.service)
+        self.search = SearchController(self, self.view_model, self.view, self.service)
 
     def start(self):
         self.view.start()
@@ -39,3 +41,6 @@ class Controller:
 
     def switch_to_lyrics(self):
         return self.switch_view('lyrics')
+
+    def switch_to_search(self):
+        return self.switch_view('search')

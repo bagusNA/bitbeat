@@ -1,3 +1,5 @@
+import re
+
 from PySide6.QtGui import QFont
 from PySide6.QtWidgets import QWidget
 
@@ -21,6 +23,13 @@ def remove_all_widgets(layout):
         child = layout.takeAt(0)
         if child.widget():
             child.widget().deleteLater()
+
+
+def is_youtube_url(string: str) -> bool:
+    rule = "^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube(-nocookie)?\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|live\/|v\/)?)([\w\-]+)(\S+)?$"
+    match = re.search(rule, string)
+
+    return match is not None
 
 
 class Font:
