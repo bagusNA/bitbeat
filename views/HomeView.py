@@ -21,11 +21,13 @@ class HomeView(QWidget):
     def bind(self, controller):
         self._controller = controller.home
 
-        self.ui.input_search.textChanged.connect(self._controller.change_search_query)
-        self.ui.btn_search.clicked.connect(self._controller.on_search)
-
         self._controller.service.library.favourited_songs_changed.connect(self.on_favourites_changed)
         self._controller.service.library.latest_song_changed.connect(self.on_latest_song_changed)
+        self._controller.view_model.search_query_changed.connect(self.on_search_query_changed)
+
+        self.ui.input_search.textChanged.connect(self._controller.change_search_query)
+        self.ui.input_search.returnPressed.connect(self._controller.on_search)
+        self.ui.btn_search.clicked.connect(self._controller.on_search)
 
         self.after_bind()
 

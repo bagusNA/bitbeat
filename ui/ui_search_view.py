@@ -53,20 +53,20 @@ class Ui_search_view(object):
         self.horizontalLayout.setSpacing(18)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(-1, -1, -1, 12)
-        self.lineEdit = QLineEdit(search_view)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setMinimumSize(QSize(0, 36))
+        self.input_search = QLineEdit(search_view)
+        self.input_search.setObjectName(u"input_search")
+        self.input_search.setMinimumSize(QSize(0, 36))
 
-        self.horizontalLayout.addWidget(self.lineEdit)
+        self.horizontalLayout.addWidget(self.input_search)
 
-        self.pushButton = QPushButton(search_view)
-        self.pushButton.setObjectName(u"pushButton")
-        self.pushButton.setMinimumSize(QSize(0, 48))
+        self.btn_search = QPushButton(search_view)
+        self.btn_search.setObjectName(u"btn_search")
+        self.btn_search.setMinimumSize(QSize(0, 48))
         icon = QIcon()
         icon.addFile(u":/icons/icons/search.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton.setIcon(icon)
+        self.btn_search.setIcon(icon)
 
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.horizontalLayout.addWidget(self.btn_search)
 
 
         self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
@@ -79,6 +79,6 @@ class Ui_search_view(object):
 
     def retranslateUi(self, search_view):
         search_view.setWindowTitle(QCoreApplication.translate("search_view", u"Form", None))
-        self.pushButton.setText(QCoreApplication.translate("search_view", u"Search", None))
+        self.btn_search.setText(QCoreApplication.translate("search_view", u"Search", None))
     # retranslateUi
 

@@ -78,7 +78,7 @@
       <number>12</number>
      </property>
      <item>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="input_search">
        <property name="minimumSize">
         <size>
          <width>0</width>
@@ -88,7 +88,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="btn_search">
        <property name="minimumSize">
         <size>
          <width>0</width>

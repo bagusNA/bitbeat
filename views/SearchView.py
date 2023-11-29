@@ -18,16 +18,28 @@ class SearchView(QWidget):
 
     def bind(self, controller):
         self._controller = controller.search
+
         self._controller.service.song_fetcher.search_result_fetched.connect(self.on_search_result_fetched)
+        self._controller.view_model.search_query_changed.connect(self.on_search_query_changed)
+
+        self.ui.input_search.textChanged.connect(self._controller.change_search_query)
+        self.ui.input_search.returnPressed.connect(self._controller.on_search)
+        self.ui.btn_search.clicked.connect(self._controller.on_search)
 
     def on_show(self):
-        self.clear_item()
+        pass
 
     def on_leave(self):
-        self.clear_item()
+        pass
+
+    @Slot(str)
+    def on_search_query_changed(self, value: str) -> None:
+        self.ui.input_search.setText(value)
 
     @Slot(object)
     def on_search_result_fetched(self, videos: list[Video]):
+        self.clear_item()
+
         for song in videos:
             self.build_result_item(song)
 
