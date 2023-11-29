@@ -1,7 +1,7 @@
 from PySide6.QtCore import Slot
-from PySide6.QtWidgets import QWidget, QLabel
-from youtube_search import YoutubeSearch
+from PySide6.QtWidgets import QWidget
 
+from models.Video import Video
 from ui.ui_search_view import Ui_search_view as Ui
 from utils import utils
 from widgets.SearchListItem import SearchListItem
@@ -27,12 +27,11 @@ class SearchView(QWidget):
         self.clear_item()
 
     @Slot(object)
-    def on_search_result_fetched(self, result: YoutubeSearch):
-        for song in result.videos:
-            print(song['thumbnails'][0])
+    def on_search_result_fetched(self, videos: list[Video]):
+        for song in videos:
             self.build_result_item(song)
 
-    def build_result_item(self, video: dict):
+    def build_result_item(self, video: Video):
         list_item = SearchListItem(video)
         self.ui.search_container.addWidget(list_item)
 

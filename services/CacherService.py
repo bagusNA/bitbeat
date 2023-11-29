@@ -8,6 +8,7 @@ from PySide6.QtGui import QPixmap
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from models.Song import Song
+    from models.Video import Video
 
 
 class CacherService(QObject):
@@ -18,7 +19,7 @@ class CacherService(QObject):
         super(CacherService, self).__init__()
 
     @classmethod
-    def image_from_song(cls, song: Song) -> str:
+    def image_from_song(cls, song: Song | Video) -> str:
         file_path = cls.filepath(song.id)
 
         if not os.path.isfile(file_path):
@@ -27,7 +28,7 @@ class CacherService(QObject):
         return file_path
 
     @classmethod
-    def create_image_cache(cls, song: Song):
+    def create_image_cache(cls, song: Song | Video):
         album_cover = QPixmap()
 
         img_data = urlopen(song.thumbnail_url).read()

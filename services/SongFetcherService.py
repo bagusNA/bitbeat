@@ -5,7 +5,7 @@ from PySide6.QtCore import QObject, Signal
 
 from models.Playlist import Playlist
 from models.Song import Song
-from utils import utils
+from models.Video import Video
 
 
 class SongFetcherService(QObject):
@@ -76,7 +76,14 @@ class SongFetcherService(QObject):
 
     def search(self, query: str):
         results = YoutubeSearch(query, max_results=10)
-        self.search_result_fetched.emit(results)
+        videos = []
+
+        for video_result in results.videos:
+            video = Video()
+            video.load(video_result)
+            videos.append(video)
+
+        self.search_result_fetched.emit(videos)
 
     # Utilities
     def is_format_audio_only(self, format: dict) -> bool:
