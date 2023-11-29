@@ -47,5 +47,7 @@ class SearchView(QWidget):
         list_item = SearchListItem(video)
         self.ui.search_container.addWidget(list_item)
 
+        list_item.clicked.connect(self._controller.on_video_item_clicked)
+
     def clear_item(self):
         utils.remove_all_widgets(self.ui.search_container)

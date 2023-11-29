@@ -32,6 +32,10 @@ def is_youtube_url(string: str) -> bool:
     return match is not None
 
 
+def youtube_url_from_id(video_id: str) -> str:
+    return f"https://youtube.com/watch?v={video_id}"
+
+
 class Font:
     FONT_FAMILY = 'Nunito'
 

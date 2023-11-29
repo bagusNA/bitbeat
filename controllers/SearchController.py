@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING
 
 from PySide6.QtCore import QObject, Slot
 
+from models.Video import Video
 from services.main import Service
 from utils import utils
 from view_models.main import ViewModel
@@ -33,6 +34,11 @@ class SearchController(QObject):
             self.service.audio_player.search_song_query(query)
         else:
             self.service.audio_player.search_song(query)
+
+    @Slot(object)
+    def on_video_item_clicked(self, video: Video):
+        url = utils.youtube_url_from_id(video.id)
+        self.service.audio_player.search_song(url)
 
     @Slot(str)
     def change_search_query(self, value: str):

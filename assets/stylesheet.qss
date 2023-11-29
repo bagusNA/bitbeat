@@ -19,6 +19,7 @@ QScrollArea > QWidget > QScrollBar {
 
 QPushButton,
 FavouriteListItem,
+SearchListItem,
 SongCard {
     border: none;
     border-radius: 8px;
@@ -26,12 +27,14 @@ SongCard {
 
 QPushButton:hover,
 FavouriteListItem:hover,
+SearchListItem:hover,
 SongCard:hover {
     background-color: '#363a4f';
 }
 
 QPushButton:pressed,
 FavouriteListItem[pressed="true"],
+SearchListItem[pressed="true"],
 SongCard[pressed="true"] {
     background-color: '#494d64';
 }

@@ -1,5 +1,3 @@
-from urllib.request import urlopen
-
 from PySide6.QtCore import Signal
 from PySide6.QtGui import QMouseEvent, QPaintEvent, QPainter
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QStyleOption, QStyle
@@ -15,6 +13,8 @@ class SearchListItem(QWidget):
 
     def __init__(self, video: Video, parent=None):
         super(SearchListItem, self).__init__(parent)
+
+        self._video = video
 
         self.album_cover = AlbumCover(video.image_path)
         self.title_label = MarqueeLabel(text=video.title, hover_parent=self)
@@ -44,7 +44,7 @@ class SearchListItem(QWidget):
         self.style().polish(self)
         self.style().unpolish(self)
 
-        # self.clicked.emit(self._song)
+        self.clicked.emit(self._video)
 
     def paintEvent(self, event: QPaintEvent) -> None:
         super(SearchListItem, self).paintEvent(event)
