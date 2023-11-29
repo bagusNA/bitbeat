@@ -39,3 +39,9 @@ SongCard[pressed="true"] {
 QueueListItem {
     color: '#FFFFFF';
 }
+
+QPushButton,
+QLineEdit {
+    padding-left: 12px;
+    padding-right: 12px;
+}

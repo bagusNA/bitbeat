@@ -52,6 +52,7 @@ class MainLayout(QMainWindow):
         self.ui.volume_slider.valueChanged.connect(self._controller.on_volume_change)
 
         self.ui.btn_home.clicked.connect(self._base_controller.switch_to_home)
+        self.ui.btn_search.clicked.connect(self._base_controller.switch_to_search)
         self.ui.btn_playlist.clicked.connect(self._base_controller.switch_to_playlist)
         self.ui.btn_favourite.clicked.connect(self._base_controller.switch_to_favourite)
         self.ui.btn_setting.clicked.connect(self._base_controller.switch_to_setting)

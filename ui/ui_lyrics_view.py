@@ -15,8 +15,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QScrollArea, QSizePolicy,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QScrollArea,
+    QSizePolicy, QVBoxLayout, QWidget)
 
 class Ui_lyrics_view(object):
     def setupUi(self, lyrics_view):
@@ -24,15 +24,14 @@ class Ui_lyrics_view(object):
             lyrics_view.setObjectName(u"lyrics_view")
         lyrics_view.resize(596, 536)
         self.gridLayout = QGridLayout(lyrics_view)
-        self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.scrollArea = QScrollArea(lyrics_view)
         self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setFrameShape(QFrame.NoFrame)
         self.scrollArea.setWidgetResizable(True)
         self.view_slot = QWidget()
         self.view_slot.setObjectName(u"view_slot")
-        self.view_slot.setGeometry(QRect(0, 0, 586, 526))
+        self.view_slot.setGeometry(QRect(0, 0, 584, 524))
         self.gridLayout_2 = QGridLayout(self.view_slot)
         self.gridLayout_2.setSpacing(0)
         self.gridLayout_2.setObjectName(u"gridLayout_2")

@@ -603,6 +603,35 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="btn_search">
+           <property name="minimumSize">
+            <size>
+             <width>64</width>
+             <height>64</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>64</width>
+             <height>64</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../assets/assets.qrc">
+             <normaloff>:/icons/icons/search.svg</normaloff>:/icons/icons/search.svg</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QPushButton" name="btn_playlist">
            <property name="minimumSize">
             <size>
@@ -842,7 +871,7 @@
  </widget>
  <resources>
   <include location="../assets/assets.qrc"/>
-  <include location="../../../../../.designer/assets/assets.qrc"/>
+  <include location="../assets/assets.qrc"/>
  </resources>
  <connections/>
 </ui>

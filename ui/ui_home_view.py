@@ -15,9 +15,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
-    QLineEdit, QPushButton, QScrollArea, QSizePolicy,
-    QSpacerItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QFrame, QGridLayout, QHBoxLayout,
+    QLabel, QLineEdit, QPushButton, QScrollArea,
+    QSizePolicy, QSpacerItem, QVBoxLayout, QWidget)
 import assets_rc
 
 class Ui_home_view(object):
@@ -29,10 +29,12 @@ class Ui_home_view(object):
         self.gridLayout.setObjectName(u"gridLayout")
         self.scrollArea = QScrollArea(home_view)
         self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setFrameShape(QFrame.NoFrame)
+        self.scrollArea.setFrameShadow(QFrame.Sunken)
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 570, 436))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 580, 446))
         self.verticalLayout_2 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")

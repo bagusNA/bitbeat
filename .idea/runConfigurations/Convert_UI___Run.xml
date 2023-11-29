@@ -3,7 +3,9 @@
     <toRun name="Convert Favourite View" type="PythonConfigurationType" />
     <toRun name="Convert Home View" type="PythonConfigurationType" />
     <toRun name="Convert Layout" type="PythonConfigurationType" />
+    <toRun name="Convert Lyrics View" type="PythonConfigurationType" />
     <toRun name="Convert Playlist View" type="PythonConfigurationType" />
+    <toRun name="Convert Search View" type="PythonConfigurationType" />
     <toRun name="Convert Setting View" type="PythonConfigurationType" />
     <toRun name="Run" type="PythonConfigurationType" />
     <method v="2" />

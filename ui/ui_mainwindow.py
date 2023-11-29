@@ -302,13 +302,24 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.btn_home)
 
+        self.btn_search = QPushButton(self.collapsed_sidebar_widget)
+        self.btn_search.setObjectName(u"btn_search")
+        self.btn_search.setMinimumSize(QSize(64, 64))
+        self.btn_search.setMaximumSize(QSize(64, 64))
+        icon12 = QIcon()
+        icon12.addFile(u":/icons/icons/search.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_search.setIcon(icon12)
+        self.btn_search.setIconSize(QSize(24, 24))
+
+        self.verticalLayout_2.addWidget(self.btn_search)
+
         self.btn_playlist = QPushButton(self.collapsed_sidebar_widget)
         self.btn_playlist.setObjectName(u"btn_playlist")
         self.btn_playlist.setMinimumSize(QSize(64, 64))
         self.btn_playlist.setMaximumSize(QSize(64, 64))
-        icon12 = QIcon()
-        icon12.addFile(u":/icons/icons/music-album.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_playlist.setIcon(icon12)
+        icon13 = QIcon()
+        icon13.addFile(u":/icons/icons/music-album.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_playlist.setIcon(icon13)
         self.btn_playlist.setIconSize(QSize(24, 24))
 
         self.verticalLayout_2.addWidget(self.btn_playlist)
@@ -326,9 +337,9 @@ class Ui_MainWindow(object):
         self.btn_setting.setObjectName(u"btn_setting")
         self.btn_setting.setMinimumSize(QSize(64, 64))
         self.btn_setting.setMaximumSize(QSize(64, 64))
-        icon13 = QIcon()
-        icon13.addFile(u":/icons/icons/settings.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.btn_setting.setIcon(icon13)
+        icon14 = QIcon()
+        icon14.addFile(u":/icons/icons/settings.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.btn_setting.setIcon(icon14)
         self.btn_setting.setIconSize(QSize(24, 24))
 
         self.verticalLayout_2.addWidget(self.btn_setting)
@@ -427,6 +438,7 @@ class Ui_MainWindow(object):
         self.btn_volume_muted.setText("")
         self.label.setText("")
         self.btn_home.setText("")
+        self.btn_search.setText("")
         self.btn_playlist.setText("")
         self.btn_favourite.setText("")
         self.btn_setting.setText("")

@@ -15,22 +15,25 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
-    <number>0</number>
+    <number>6</number>
    </property>
    <property name="topMargin">
-    <number>0</number>
+    <number>6</number>
    </property>
    <property name="rightMargin">
-    <number>0</number>
+    <number>6</number>
    </property>
    <property name="bottomMargin">
-    <number>0</number>
+    <number>6</number>
    </property>
    <property name="spacing">
-    <number>0</number>
+    <number>8</number>
    </property>
-   <item row="0" column="0">
+   <item row="1" column="0">
     <widget class="QScrollArea" name="scrollArea">
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
      <property name="widgetResizable">
       <bool>true</bool>
      </property>
@@ -39,8 +42,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>586</width>
-        <height>526</height>
+        <width>584</width>
+        <height>455</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -66,8 +69,47 @@
      </widget>
     </widget>
    </item>
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>18</number>
+     </property>
+     <property name="bottomMargin">
+      <number>12</number>
+     </property>
+     <item>
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>36</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Search</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../assets/assets.qrc">
+         <normaloff>:/icons/icons/search.svg</normaloff>:/icons/icons/search.svg</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../assets/assets.qrc"/>
+ </resources>
  <connections/>
 </ui>
