@@ -26,3 +26,8 @@ class Playlist(Model):
     def update_last_played(self) -> None:
         self.last_played_at = datetime.now().timestamp()
         self.save()
+
+    @property
+    def image_path(self):
+        first_song = self.songs[0]
+        return first_song.image_path

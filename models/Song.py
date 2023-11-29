@@ -21,6 +21,8 @@ class Song(Model):
 
     playlist = ManyToManyField(Playlist, backref='songs')
 
+    _thumbnail_url = None
+
     def load(self, song_info: dict) -> None:
         self.id = song_info.get('id')
         self.title = song_info.get('title')
@@ -29,7 +31,7 @@ class Song(Model):
         self.audio_url = song_info.get('audio_url')
         self.duration = song_info.get('duration')
         self.duration_formatted = seconds_to_minutes(self.duration)
-        self.thumbnail_url = song_info.get('thumbnail')
+        self._thumbnail_url = song_info.get('thumbnail')
         self.formats = song_info.get('formats')
         self.view_count = song_info.get('view_count')
         self.upload_date = song_info.get('upload_date')
@@ -47,6 +49,10 @@ class Song(Model):
     def update_last_played(self):
         self.last_played_at = datetime.now().timestamp()
         self.save()
+
+    @property
+    def thumbnail_url(self):
+        return coalesce(self._thumbnail_url, f"https://i.ytimg.com/vi/{self.id}/mqdefault.jpg")
 
     @property
     def image_path(self):

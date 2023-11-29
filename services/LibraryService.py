@@ -7,6 +7,7 @@ from models.Song import Song
 class LibraryService(QObject):
     favourited_songs_changed = Signal(object)
     latest_song_changed = Signal(object)
+    playlist_imported = Signal(object)
 
     def __init__(self):
         super(LibraryService, self).__init__()

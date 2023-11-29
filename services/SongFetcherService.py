@@ -74,6 +74,9 @@ class SongFetcherService(QObject):
 
         self.song_fetched.emit(songs)
 
+        if is_new_playlist:
+            self._service.library.playlist_imported.emit(playlist)
+
     def search(self, query: str):
         results = YoutubeSearch(query, max_results=10)
         videos = []
