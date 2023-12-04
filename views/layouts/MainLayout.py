@@ -1,5 +1,4 @@
 from PySide6.QtCore import Slot
-from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import QMainWindow
 
 from ui.ui_mainwindow import Ui_MainWindow
@@ -7,6 +6,7 @@ from models.Song import Song
 from utils.utils import seconds_to_minutes, remove_all_widgets
 from widgets.AlbumCover import AlbumCover
 from widgets.QueueListItem import QueueListItem
+from widgets.Toast import Toast
 
 
 class MainLayout(QMainWindow):
@@ -20,6 +20,7 @@ class MainLayout(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.toast = None
         self.album_cover = None
 
         self.views = {}
@@ -29,6 +30,8 @@ class MainLayout(QMainWindow):
     def bind(self, controller):
         self._base_controller = controller
         self._controller = controller.home
+
+        self._base_controller.service.toast.bind(self.toast)
 
         self._controller.player_service.current_song_changed.connect(self.on_song_change)
         self._controller.player_service.queue_changed.connect(self.on_queue_change)
@@ -58,6 +61,8 @@ class MainLayout(QMainWindow):
         self.ui.btn_setting.clicked.connect(self._base_controller.switch_to_setting)
 
     def prepare_ui(self):
+        self.toast = Toast(parent=self)
+
         self.ui.btn_pause.setVisible(False)
         self.ui.btn_volume_muted.setVisible(False)
         self.ui.btn_favourited.setVisible(False)
@@ -83,6 +88,13 @@ class MainLayout(QMainWindow):
             self.ui.queue_widget.show()
         else:
             self.ui.queue_widget.hide()
+
+    def resizeEvent(self, event):
+        super(MainLayout, self).resizeEvent(event)
+        self.on_window_resize()
+
+    def on_window_resize(self):
+        self.toast.update_position()
 
     @Slot(Song)
     def on_song_change(self, song: Song) -> None:

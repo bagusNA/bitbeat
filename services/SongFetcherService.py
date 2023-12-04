@@ -24,6 +24,9 @@ class SongFetcherService(QObject):
         self._service = service
         self._yt_dlp = yt_dlp.YoutubeDL(config)
 
+        self.song_fetched.connect(self.on_song_fetched)
+        self.search_result_fetched.connect(self.on_song_fetched)
+
     def __del__(self):
         self._yt_dlp.close()
 
@@ -87,6 +90,12 @@ class SongFetcherService(QObject):
             videos.append(video)
 
         self.search_result_fetched.emit(videos)
+
+    def on_song_fetched(self):
+        self._service.toast.clear()
+
+    def on_result_fetched(self):
+        self._service.toast.clear()
 
     # Utilities
     def is_format_audio_only(self, format: dict) -> bool:

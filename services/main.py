@@ -4,6 +4,7 @@ from .LibraryService import LibraryService
 from .LyricsService import LyricsService
 from .SongFetcherService import SongFetcherService
 from .CacherService import CacherService
+from .ToastService import ToastService
 
 
 class Service:
@@ -14,3 +15,4 @@ class Service:
         self.library = LibraryService()
         self.cacher = CacherService()
         self.lyrics = LyricsService(self)
+        self.toast = ToastService()

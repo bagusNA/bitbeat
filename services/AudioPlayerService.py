@@ -79,7 +79,11 @@ class AudioPlayerService(QObject):
         self._song_fetcher.moveToThread(self.thread)
 
         self.fetch_song_signal.connect(self._song_fetcher.fetch_song)
+        self.fetch_song_signal.connect(self.on_song_fetch)
+
         self.search_song_signal.connect(self._song_fetcher.search)
+        self.search_song_signal.connect(self.on_search)
+
         self._song_fetcher.song_fetched.connect(self.add_song)
 
         self.thread.finished.connect(self.deleteLater)
@@ -194,3 +198,9 @@ class AudioPlayerService(QObject):
     def move_playback_to(self, percent):
         self._player.percent_pos = percent
         self.playback_percent = percent
+
+    def on_song_fetch(self):
+        self._service.toast.show('Loading...')
+
+    def on_search(self):
+        self._service.toast.show('Searching...')
